@@ -1,7 +1,9 @@
 import { useEffect, useMemo } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { LibraryScreen } from '@/features/library/LibraryScreen';
 import { useLibrary, type LibraryDeps } from '@/features/library/useLibrary';
+import { PlayerBar } from '@/features/player/PlayerBar';
 import { usePlayer } from '@/features/player/usePlayer';
 import type { Track } from '@/lib/track';
 import { configureAudioSession, createExpoPlayerAdapter } from '@/services/audio/expoPlayerAdapter';
@@ -30,11 +32,18 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <LibraryScreen
-      library={library}
-      source={deps.source}
-      activeTrackId={player.currentTrack?.id ?? null}
-      onTrackPress={player.playTrack}
-    />
+    <View style={styles.container}>
+      <LibraryScreen
+        library={library}
+        source={deps.source}
+        activeTrackId={player.currentTrack?.id ?? null}
+        onTrackPress={player.playTrack}
+      />
+      <PlayerBar player={player} />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+});

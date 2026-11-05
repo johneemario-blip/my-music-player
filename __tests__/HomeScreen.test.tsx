@@ -10,7 +10,6 @@ import HomeScreen from '../app/index';
 
 jest.mock('expo-file-system', () => jest.requireActual('@/test/fakeFileSystem'));
 jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn() }));
-jest.mock('expo-asset', () => ({ Asset: { loadAsync: jest.fn() } }));
 jest.mock('@/services/audio/probeDuration', () => ({
   probeDuration: jest.fn(async () => 125000),
 }));
@@ -74,5 +73,7 @@ describe('HomeScreen (app entry)', () => {
     });
     expect(mockNativePlayer.play).toHaveBeenCalled();
     expect(screen.getByRole('button', { name: 'second song, 2:05' })).toBeSelected();
+    expect(screen.getByTestId(testIds.playerTitle)).toHaveTextContent('second song');
+    expect(screen.getByRole('button', { name: strings.player.pause })).toBeEnabled();
   });
 });

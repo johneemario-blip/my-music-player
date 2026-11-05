@@ -88,7 +88,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 3.2 kolejka (`src/features/player/`: `queueStrategy` wymienna, czysty `createPlayerReducer`, `usePlayer` steruje adapterem przez licznik `loadRequest`; „poprzedni” po >3 s restartuje utwór; `app/index.tsx` łączy wiersz z `playTrack`)
-- Next task: 3.3 `PlayerBar`
+- Last completed task: 3.3 `PlayerBar` (`src/features/player/PlayerBar.tsx`, ikony `@expo/vector-icons` Ionicons, suwak `@react-native-community/slider` — pozycja przeciągania tylko między slidingStart a slidingComplete)
+- Next task: 3.4 E2E odtwarzacza
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

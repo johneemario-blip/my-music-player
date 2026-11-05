@@ -11,4 +11,13 @@ export const testIds = {
   folderPicker: 'folder-picker.modal',
   folderOption: (label: string) => `folder-picker.option.${label === '' ? 'root' : label}`,
   folderPickerCancel: 'folder-picker.cancel',
+  playerBar: 'player.bar',
+  playerTitle: 'player.title',
+  playerSlider: 'player.slider',
+  playerPosition: 'player.position',
+  playerDuration: 'player.duration',
+  playerPrevious: 'player.previous',
+  playerPlayPause: 'player.play-pause',
+  playerStop: 'player.stop',
+  playerNext: 'player.next',
 } as const;

@@ -22,6 +22,16 @@ export const strings = {
     importFailed: 'Import failed. Try again.',
     trackLabel: (name: string, duration: string) => `${name}, ${duration}`,
   },
+  player: {
+    nothingPlaying: 'Nothing playing',
+    play: 'Play',
+    pause: 'Pause',
+    stop: 'Stop',
+    next: 'Next track',
+    previous: 'Previous track',
+    seek: 'Playback position',
+    cannotPlay: (name: string) => `Can't play «${name}». Skipped to the next track.`,
+  },
   folderPicker: {
     title: 'Choose folder',
     appFolder: 'All music (app folder)',

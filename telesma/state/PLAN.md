@@ -62,11 +62,11 @@
   - AC: stop zatrzymuje i ustawia pozycję na 0; play po stopie startuje od początku
   - AC: po zakończeniu utworu startuje następny z listy, po ostatnim odtwarzacz zatrzymuje się
 - [x] Test: 3.2 — testy jednostkowe reducera (wszystkie przejścia) i hooka z fałszywym `PlayerAdapter` (auto-następny, koniec listy, plik z błędem)
-- [ ] Task 3.3: `PlayerBar` na dole ekranu głównego: tytuł, suwak (`@react-native-community/slider`) z seek, czas bieżący/całkowity `m:ss`, przyciski poprzedni / play-pauza / stop / następny (nieaktywne bez utworu), wyróżnienie granego wiersza (requires: 3.2, 2.4) (spec: app.md) (tech: react-native, typescript, accessibility)
+- [x] Task 3.3: `PlayerBar` na dole ekranu głównego: tytuł, suwak (`@react-native-community/slider`) z seek, czas bieżący/całkowity `m:ss`, przyciski poprzedni / play-pauza / stop / następny (nieaktywne bez utworu), wyróżnienie granego wiersza (requires: 3.2, 2.4) (spec: app.md) (tech: react-native, typescript, accessibility)
   - AC: suwak pokazuje postęp odtwarzania i przeciągnięcie przewija utwór do wskazanej pozycji
   - AC: przycisk play zmienia się w pauzę podczas odtwarzania i z powrotem po pauzie
   - AC: aktualnie grany utwór jest wyróżniony na liście
-- [ ] Test: 3.3 — testy RNTL: stany przycisków, wartość suwaka z pozycji, seek wywołuje adapter, wyróżnienie wiersza
+- [x] Test: 3.3 — testy RNTL: stany przycisków, wartość suwaka z pozycji, seek wywołuje adapter, wyróżnienie wiersza
 - [ ] Task 3.4: E2E test — dotknięcie utworu → gra; pauza → pozycja zachowana; stop → 0:00; seek suwakiem; następny/poprzedni; auto-następny na krótkich plikach testowych; koniec listy → stop (iOS + Android) (requires: 3.1, 3.2, 3.3) (spec: app.md) (tech: detox, typescript)
 
 ### Phase 4: Odtwarzanie w tle
