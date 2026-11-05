@@ -94,6 +94,7 @@ describe('Player', () => {
     await touchSliderAt(0.75);
 
     await waitFor(position()).toHaveText('0:02').withTimeout(3000);
+    await expect(position()).toHaveText('0:02');
   });
 
   it('next and previous switch tracks', async () => {
