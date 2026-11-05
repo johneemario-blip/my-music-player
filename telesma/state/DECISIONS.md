@@ -49,3 +49,15 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Uzgodniliśmy, że w v1 ekran blokady i powiadomienie medialne mają tylko play/pauzę i tytuł utworu; następny/poprzedni działają w aplikacji. Przyciski skoku na ekranie blokady trafiają do BACKLOG (P2). Odrzucone na teraz: (b) — przepisanie kolejki z 3.1–3.2 i ryzyko regresji pomijania nieczytelnych plików na iOS; (c) — nowa natywna zależność o niepewnej zgodności z New Architecture. Warunek powrotu: element BACKLOG „Następny/poprzedni na ekranie blokady”.
 **Impact**: Task 5.1, 5.2, 5.3; `src/services/audio/expoPlayerAdapter.ts`
 
+## 2026-11-05 17:28 — Wynik testu ręcznego 5.3 na Androidzie
+**Kind**: operations
+**Question/context**: Właściciel zgłosił, że na fizycznym telefonie z Androidem wszystko działa (test ręczny ekranu blokady i powiadomienia medialnego).
+**Outcome**: Wynik dla Androida zapisany w REPORT.md. Zadanie 5.3 pozostaje otwarte do czasu testu na fizycznym iPhonie. No decision — awaits: wynik testu na iPhonie, decyzja o niezacommitowanej zmianie `tsconfig.json` oraz odpowiedź na propozycję wydania v0.3.0.
+**Impact**: Task 5.3
+
+## 2026-11-05 17:35 — Zamknięcie 5.3 bez fizycznego iPhone'a
+**Kind**: operations
+**Question/context**: Właściciel nie może teraz sprawdzić iPhone'a; poprosił o działanie zgodnie z rekomendacją i dokończenie projektu.
+**Outcome**: Uzgodniliśmy zamknięcie 5.3 z adnotacją „iOS sprawdzony tylko na symulatorze (e2e)”; projekt zakończony, powstał `docs/RUNBOOK.md`. Wersja v0.3.0 nie została utworzona, zgodnie z rekomendacją czekania na test na iPhonie. No decision — awaits: czy zacommitować, czy cofnąć zmianę `tsconfig.json`, której Telesma nie zrobiła (zostawiona bez zmian).
+**Impact**: Task 5.3, docs/RUNBOOK.md
+

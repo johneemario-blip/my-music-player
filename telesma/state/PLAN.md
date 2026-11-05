@@ -84,7 +84,8 @@
   - AC: ekran blokady pokazuje nazwę granego utworu
 - [x] Test: 5.1 — testy jednostkowe mapowania zdalnych komend na akcje reducera i aktualizacji metadanych przy zmianie utworu
 - [x] Task 5.2: E2E test — regresja pełnego scenariusza z fazy 3 przy włączonej sesji medialnej (lista → play → pauza → następny → stop) (iOS + Android) (requires: 5.1) (spec: app.md) (tech: detox, typescript)
-- [ ] ⛔ Task 5.3: Test ręczny na fizycznym iPhonie i telefonie z Androidem: play/pauza i tytuł na ekranie blokady i w powiadomieniu, wynik zapisany w REPORT.md (requires: 5.1, 5.2) (spec: app.md)
+- [x] ⛔ Task 5.3: Test ręczny na fizycznym iPhonie i telefonie z Androidem: play/pauza i tytuł na ekranie blokady i w powiadomieniu, wynik zapisany w REPORT.md (requires: 5.1, 5.2) (spec: app.md) <!-- Android fizyczny ✅; iOS tylko symulator (e2e) — decyzja właściciela -->
+
 
 ### Phase 6: Wykończenie
 

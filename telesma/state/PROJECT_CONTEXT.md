@@ -92,7 +92,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 6.3 pełne e2e (iOS 12, Android 12) — wszystkie zadania autonomiczne ukończone
-- Next task: 5.3 ⛔ test ręczny na telefonach (właściciel); po nim TELESMA COMPLETE + docs/RUNBOOK.md
+- Last completed task: 5.3 (test ręczny: Android fizyczny ✅, iOS tylko symulator) — plan ukończony (TELESMA COMPLETE), instrukcja w `docs/RUNBOOK.md`
+- Next task: brak — tryb interaktywny; otwarte: test na fizycznym iPhonie, wersja v0.3.0, niezacommitowana zmiana `tsconfig.json` (nie od Telesmy)
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

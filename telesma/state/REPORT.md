@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: Waiting (wszystkie zadania autonomiczne ukończone; 5.3 ⛔ czeka na test ręczny właściciela)
-- **Progress**: 22/23 tasks completed (fazy 1–4 i 6 ✅, faza 5: 5.3 ⛔)
+- **Status**: Complete (wszystkie zadania ukończone; 5.3 zamknięte bez testu na fizycznym iPhonie — decyzja właściciela)
+- **Progress**: 23/23 tasks completed (fazy 1–6 ✅)
 
 ## Test status
 
@@ -32,6 +32,8 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 5 (2026-11-05) — GREEN:** weryfikacja końcowa: unit `npm test -- --ci` 149/0 (12 plików); `tsc`, ESLint czyste; e2e iOS 12/0 i Android 12/0 z przebiegu 6.3 (od tamtej pory bez zmian w kodzie). Tag `telesma/phase-5`.
+
 **Regression after Phase 3 (2026-11-05) — GREEN:** unit `npm test -- --ci` 128/0 (11 plików), e2e Detox iOS 10/0 (3 kolejne przebiegi) i Android 10/0; `tsc`, ESLint, Prettier czyste. Względem fazy 2: +48 unit, +5 e2e na platformę. Tag `telesma/phase-3`.
 
 **Regression after Phase 2 (2026-11-05) — GREEN:** unit `npm test -- --ci` 80/0 (7 plików), e2e Detox iOS 5/0 i Android 5/0 (smoke + biblioteka); `tsc`, ESLint, Prettier czyste. Względem fazy 1: +43 unit, +4 e2e na platformę. Tag `telesma/phase-2`.
@@ -44,7 +46,7 @@ forever and grows in the prompt of every session.
 | Pass | 173 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (regresja po fazie 6) |
+| Last run | 2026-11-05 (weryfikacja końcowa po fazie 5: unit 149/149; e2e z regresji po fazie 6) |
 
 ## Task history
 
@@ -59,7 +61,8 @@ forever and grows in the prompt of every session.
 | 5.2 E2E regresja z sesją medialną + naprawa „następny utwór czasem nie startuje” (iOS) | ✅ | unit 143/143 (5 nowych), e2e iOS 12/12 i Android 12/12, stres iOS 10/10 | 3 | f8030ec | 2026-11-05 |
 | 6.1 Tożsamość aplikacji (ikona, splash jasny/ciemny, test konfiguracji) | ✅ | unit 149/149 (6 nowych), `expo config` bez ostrzeżeń, expo-doctor 20/20, e2e iOS 12/12 i Android 12/12 | 1 | 5c31297 | 2026-11-05 |
 | 6.2 README (EN): uruchomienie, testy, muzyka na iOS/Androidzie, ograniczenia | ✅ | dokumentacja; Prettier ok | 1 | 64daa07 | 2026-11-05 |
-| 6.3 E2E pełny przebieg (fazy 1–5) z finalną konfiguracją | ✅ | e2e iOS 12/12, Android 12/12; unit 149/149 | 1 | (ten commit) | 2026-11-05 |
+| 6.3 E2E pełny przebieg (fazy 1–5) z finalną konfiguracją | ✅ | e2e iOS 12/12, Android 12/12; unit 149/149 | 1 | dea1419 | 2026-11-05 |
+| 5.3 Test ręczny ekranu blokady (Android fizyczny ✅; iOS tylko symulator/e2e — decyzja właściciela) + docs/RUNBOOK.md | ✅ | ręczny Android ok; unit 149/149, `tsc`, ESLint czyste | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -116,3 +119,4 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 5.1: expo-audio — next/previous z ekranu blokady tylko dla `AudioPlaylist`, dla `AudioPlayer` pusta implementacja (MediaController.swift); BLOCKED: wybór a/b/c (BLOCKED.md).
 - [2026-11-05] Task 5.2: błąd (wprowadzony w 3.1–3.2, wykryty przez test e2e, 2. wystąpienie — pierwsze w 3.4) — na iOS następny utwór czasem zostawał w pauzie na 0:00. Przyczyna: pauza AVPlayera „na koniec utworu” (actionAtItemEnd .pause) przychodzi czasem po naszym replace+play kolejnego utworu; dodatkowo expo-audio dezaktywował sesję po końcu utworu. Naprawa: `keepAudioSessionActive: true` + adapter ponawia `play()` (max 3) dopóki status nie potwierdzi grania; pauza/stop anulują. Stres 10/10 (wcześniej ~1/5 i 1/8 porażek).
 - [2026-11-05] Task 6.1: expo-doctor — `@expo/vector-icons` (od 3.3) wymaga bezpośredniej zależności `expo-font`; dodana (`npx expo install expo-font`).
+- [2026-11-05] Task 5.3: test ręczny na fizycznym telefonie z Androidem — właściciel: „wszystko działa” (play/pauza i tytuł na ekranie blokady i w powiadomieniu, synchronizacja z aplikacją). iOS (fizyczny iPhone) — nie przetestowany; właściciel zdecydował zamknąć 5.3 na podstawie e2e na symulatorze. Do sprawdzenia przed ewentualnym wydaniem w sklepie.
