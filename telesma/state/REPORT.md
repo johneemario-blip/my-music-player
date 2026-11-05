@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress (faza 1 ukończona, następna: 2.1)
-- **Progress**: 4/23 tasks completed (faza 1: 1.1–1.4 ✅)
+- **Status**: In progress (faza 2)
+- **Progress**: 5/23 tasks completed (faza 1 ✅, faza 2: 2.1)
 
 ## Test status
 
@@ -36,11 +36,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 39 (37 unit + 2 e2e) |
-| Pass | 39 |
+| Total tests | 49 (47 unit + 2 e2e) |
+| Pass | 49 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (regresja po fazie 1) |
+| Last run | 2026-11-05 (task 2.1, `npm test`) |
 
 ## Task history
 
@@ -50,6 +50,7 @@ forever and grows in the prompt of every session.
 | 1.2 Model domeny i czysta logika (`src/lib/track.ts`) | ✅ | 26/26 (25 nowych), mutacja reguły ogg → czerwony | 1 | 7ebe33c | 2026-11-05 |
 | 1.3 Pamięć ustawień (`settingsStorage`) | ✅ | 37/37 (11 nowych), mutacja walidacji `kind` → czerwony | 1 | 4856d83 | 2026-11-05 |
 | 1.4 Konfiguracja Detox + e2e dymny | ✅ | e2e iOS 1/1 (iPhone 16), Android 1/1 (AVD MyMusicPlayer_E2E); unit 37/37 | 3 + BLOCKED (dysk, R8) | 7649a5a | 2026-11-05 |
+| 2.1 `LibrarySource` + Android SAF (`src/services/files/`) | ✅ | 47/47 unit (10 nowych), mutacja pomijania ukrytych → czerwony | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 

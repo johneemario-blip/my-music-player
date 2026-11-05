@@ -28,11 +28,11 @@
 
 ### Phase 2: Biblioteka — wybór katalogu i lista utworów
 
-- [ ] Task 2.1: Interfejs `LibrarySource` (`pickDirectory()`, `listAudioFiles(dirRef)` rekurencyjnie, `hasAccess(dirRef)`) + implementacja Android przez Storage Access Framework z `expo-file-system` (trwałe uprawnienie, skan podkatalogów, filtr z 1.2) w `src/services/files/` (requires: 1.2) (spec: app.md) (tech: react-native, typescript)
+- [x] Task 2.1: Interfejs `LibrarySource` (`pickDirectory()`, `listAudioFiles(dirRef)` rekurencyjnie, `hasAccess(dirRef)`) + implementacja Android przez Storage Access Framework z `expo-file-system` (trwałe uprawnienie, skan podkatalogów, filtr z 1.2) w `src/services/files/` (requires: 1.2) (spec: app.md) (tech: react-native, typescript)
   - AC: entry — użytkownik dotyka „Choose folder” → otwiera się systemowy wybór katalogu Androida
   - AC: lista zawiera obsługiwane pliki audio z wybranego katalogu i jego podkatalogów, pliki ukryte pominięte
   - AC: po ponownym uruchomieniu aplikacji dostęp do katalogu działa bez ponownego wyboru
-- [ ] Test: 2.1 — testy z atrapą FileSystem: rekurencja, filtr rozszerzeń, odmowa uprawnienia zwraca błąd, nie wyjątek
+- [x] Test: 2.1 — testy z atrapą FileSystem: rekurencja, filtr rozszerzeń, odmowa uprawnienia zwraca błąd, nie wyjątek
 - [ ] Task 2.2: `LibrarySource` dla iOS: Documents aplikacji widoczne w Pliki (`UIFileSharingEnabled`, `LSSupportsOpeningDocumentsInPlace`), „Choose folder” wybiera Documents lub podkatalog, „Import files” przez `expo-document-picker` kopiuje pliki do Documents (requires: 2.1) (spec: app.md) (tech: react-native, typescript)
   - AC: entry — użytkownik dotyka „Choose folder” na iOS → lista podkatalogów Documents; „Import files” → systemowy wybór plików
   - AC: pliki wrzucone do folderu aplikacji w Pliki pojawiają się na liście po wyborze katalogu

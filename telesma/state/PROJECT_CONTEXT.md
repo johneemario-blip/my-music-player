@@ -85,7 +85,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 1.4 Detox (faza 1 ukończona, regresja zielona); e2e: `npm run e2e:build:ios` / `e2e:test:ios`, `npm run e2e:build:android` / `e2e:test:android -- --headless`
-- Next task: 2.1 LibrarySource + implementacja Android (SAF)
+- Last completed task: 2.1 `LibrarySource` (interfejs + `androidLibrarySource` na `Directory.pickDirectoryAsync` z expo-file-system; atrapa `src/test/fakeFileSystem.ts`; `durationMs` = null przy skanie)
+- Next task: 2.2 LibrarySource iOS (Documents + import)
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
