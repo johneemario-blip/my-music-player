@@ -37,3 +37,9 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Decyzja z 2026-11-05 stands — każde zadanie e2e (2.5, 3.4, 4.2, 5.2) idzie na iOS i Androidzie przed ✅. Argument przeważający: błędy specyficzne dla Androida (usługa pierwszoplanowa w fazie 4, powiadomienie medialne w fazie 5) wychodziłyby dopiero w 6.3.
 **Impact**: zadania e2e faz 2–5 bez zmian
 
+## 2026-11-05 15:05 — Wydanie wersji v0.2.0
+**Kind**: operations
+**Question/context**: Po zielonej regresji fazy 3 zaproponowałem v0.2.0 (fazy 2–3); właściciel odpowiedział „tak”.
+**Outcome**: Uzgodniliśmy wydanie v0.2.0 — wybór folderu z muzyką na obu platformach, lista z czasami trwania i odtwarzanie z paskiem sterowania (bez odtwarzania w tle). Scenariusze ręczne w `docs/test-scenarios/v0.2.0.md`; wypchnięcie tagu należy do właściciela.
+**Impact**: fazy 2–3, tag `v0.2.0`
+
