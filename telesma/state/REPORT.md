@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 6; 5.3 czeka na test ręczny właściciela)
-- **Progress**: 19/23 tasks completed (fazy 1–4 ✅, faza 5: 5.3 ⛔, faza 6: 6.1)
+- **Progress**: 20/23 tasks completed (fazy 1–4 ✅, faza 5: 5.3 ⛔, faza 6: 6.1–6.2)
 
 ## Test status
 
@@ -69,7 +69,8 @@ forever and grows in the prompt of every session.
 | 4.2 E2E odtwarzania w tle (3 s na ekranie głównym, pozycja +3 s, „Pause”) | ✅ | e2e iOS 11/11, Android 11/11; mutacja `shouldPlayInBackground` → test tła czerwony (iOS) | 1 | ece754e | 2026-11-05 |
 | 5.1 Now Playing + play/pauza z ekranu blokady (następny/poprzedni → BACKLOG, decyzja właściciela) | ✅ | 138/138 unit (3 nowe) | 1 + BLOCKED (wybór a/b/c) | 869d745 | 2026-11-05 |
 | 5.2 E2E regresja z sesją medialną + naprawa „następny utwór czasem nie startuje” (iOS) | ✅ | unit 143/143 (5 nowych), e2e iOS 12/12 i Android 12/12, stres iOS 10/10 | 3 | f8030ec | 2026-11-05 |
-| 6.1 Tożsamość aplikacji (ikona, splash jasny/ciemny, test konfiguracji) | ✅ | unit 149/149 (6 nowych), `expo config` bez ostrzeżeń, expo-doctor 20/20, e2e iOS 12/12 i Android 12/12 | 1 | (ten commit) | 2026-11-05 |
+| 6.1 Tożsamość aplikacji (ikona, splash jasny/ciemny, test konfiguracji) | ✅ | unit 149/149 (6 nowych), `expo config` bez ostrzeżeń, expo-doctor 20/20, e2e iOS 12/12 i Android 12/12 | 1 | 5c31297 | 2026-11-05 |
+| 6.2 README (EN): uruchomienie, testy, muzyka na iOS/Androidzie, ograniczenia | ✅ | dokumentacja; Prettier ok | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 

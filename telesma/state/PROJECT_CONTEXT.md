@@ -92,7 +92,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 6.1 tożsamość aplikacji (ikona nuty generowana skryptem PIL, splash z wariantem ciemnym, `__tests__/appConfig.test.ts`)
-- Next task: 6.2 README (EN); 5.3 ⛔ czeka na test ręczny właściciela
+- Last completed task: 6.2 README.md (EN)
+- Next task: 6.3 E2E pełny przebieg (iOS + Android); 5.3 ⛔ czeka na test ręczny właściciela
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
