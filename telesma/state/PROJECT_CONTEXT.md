@@ -75,6 +75,8 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 |---------|----------|
 | Peer-dep ERESOLVE przy instalacji (react-dom, react-test-renderer, @config-plugins/detox) — biblioteki wyprzedzają/zostają za SDK 58 | Przypiąć do wersji z SDK (`react@19.3.0`) albo zastąpić lokalnym kodem; nigdy `--legacy-peer-deps` → guard: none, bo problem zależy od rejestru npm |
 | R8 w release usuwa klasy ładowane przez APK testowy Detoxa | Build e2e Androida bez minifikacji (`.detoxrc.js`), nie łatać regułami keep → DECISIONS.md 2026-11-05 13:01 |
+| Plik testowy audio na granicy pełnej sekundy daje różne m:ss na iOS i Androidzie (AAC priming, obcinanie w dół) | Fixtures e2e o długości N,5 s (ffmpeg `sine` z `duration=N.5`) → guard: none, bo dotyczy tylko nowych plików testowych |
+| Test ochrony przed nieaktualnymi danymi jest zielony bez ochrony, gdy stary i nowy stan nie mają wspólnych id | Scenariusz z nakładającymi się danymi (te same id), potem mutacja strażnika |
 
 ## Component dependencies
 
@@ -86,7 +88,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 2.4 `LibraryScreen` (`src/features/library/`: LibraryScreen, TrackRow, FolderPickerModal; `src/components/AppButton.tsx`; motyw `src/lib/theme.ts`; `app/index.tsx` łączy useLibrary + ekran)
-- Next task: 2.5 E2E biblioteki
+- Last completed task: 2.5 E2E biblioteki — fazy 1–2 ukończone, regresja zielona (unit 80, e2e iOS 5 + Android 5), tag `telesma/phase-2`
+- Next task: 3.1 `PlayerAdapter` na expo-audio
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

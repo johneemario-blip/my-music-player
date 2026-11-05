@@ -48,7 +48,7 @@
   - AC: każdy wiersz pokazuje nazwę pliku bez rozszerzenia i czas trwania w formacie m:ss
   - AC: wszystkie teksty interfejsu po angielsku, pochodzą z `src/lib/strings.ts`
 - [x] Test: 2.4 — testy RNTL: render listy z fixture, stan pusty, stan błędu, przycisk importu tylko na iOS
-- [ ] Task 2.5: E2E test — wybór katalogu z plikami testowymi → lista posortowana z czasami trwania; pusty katalog → stan pusty; restart aplikacji → lista przywrócona bez ponownego wyboru (iOS + Android) (requires: 2.1, 2.2, 2.3, 2.4) (spec: app.md) (tech: detox, typescript)
+- [x] Task 2.5: E2E test — wybór katalogu z plikami testowymi → lista posortowana z czasami trwania; pusty katalog → stan pusty; restart aplikacji → lista przywrócona bez ponownego wyboru (iOS + Android) (requires: 2.1, 2.2, 2.3, 2.4) (spec: app.md) (tech: detox, typescript)
 
 ### Phase 3: Odtwarzacz — play, pauza, stop, suwak, kolejka
 

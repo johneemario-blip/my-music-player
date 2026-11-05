@@ -31,3 +31,9 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Uzgodniliśmy wydanie v0.1.0 — szkielet aplikacji startujący na iOS i Androidzie z ekranem głównym, rozpoznawaniem plików audio i zapamiętywaniem katalogu. Scenariusze ręczne w `docs/test-scenarios/v0.1.0.md`; wypchnięcie tagu należy do właściciela.
 **Impact**: faza 1, tag `v0.1.0`
 
+## 2026-11-05 13:41 — E2E w trakcie pracy: obie platformy
+**Kind**: question
+**Question/context**: Właściciel zapytał, czy w trakcie pracy uruchamiać e2e tylko na iOS, a na wszystkich platformach dopiero na końcu; zmieniałoby to decyzję z 2026-11-05 o Detox na iOS + Android.
+**Outcome**: Decyzja z 2026-11-05 stands — każde zadanie e2e (2.5, 3.4, 4.2, 5.2) idzie na iOS i Androidzie przed ✅. Argument przeważający: błędy specyficzne dla Androida (usługa pierwszoplanowa w fazie 4, powiadomienie medialne w fazie 5) wychodziłyby dopiero w 6.3.
+**Impact**: zadania e2e faz 2–5 bez zmian
+

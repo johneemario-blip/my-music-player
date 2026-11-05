@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 2)
-- **Progress**: 8/23 tasks completed (faza 1 ✅, faza 2: 2.1–2.4)
+- **Progress**: 9/23 tasks completed (fazy 1–2 ✅)
 
 ## Test status
 
@@ -32,15 +32,17 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 2 (2026-11-05) — GREEN:** unit `npm test -- --ci` 80/0 (7 plików), e2e Detox iOS 5/0 i Android 5/0 (smoke + biblioteka); `tsc`, ESLint, Prettier czyste. Względem fazy 1: +43 unit, +4 e2e na platformę. Tag `telesma/phase-2`.
+
 **Regression after Phase 1 (2026-11-05) — GREEN:** unit `npm test -- --ci` 37/0, e2e Detox iOS (`ios.sim.release`) 1/0, Android (`android.emu.release`) 1/0; `tsc`, ESLint, Prettier czyste. Tag `telesma/phase-1`.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 82 (80 unit + 2 e2e) |
-| Pass | 82 |
+| Total tests | 90 (80 unit + 5 e2e × 2 platformy) |
+| Pass | 90 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 2.4, `npm test`) |
+| Last run | 2026-11-05 (regresja po fazie 2) |
 
 ## Task history
 
@@ -53,7 +55,8 @@ forever and grows in the prompt of every session.
 | 2.1 `LibrarySource` + Android SAF (`src/services/files/`) | ✅ | 47/47 unit (10 nowych), mutacja pomijania ukrytych → czerwony | 1 | a48c69b | 2026-11-05 |
 | 2.2 `LibrarySource` iOS (Documents + import) | ✅ | 56/56 unit (9 nowych), mutacja filtra importu → czerwony | 1 | 7009f79 | 2026-11-05 |
 | 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | 979f53a | 2026-11-05 |
-| 2.4 `LibraryScreen` (lista, stany, wybór folderu, import) | ✅ | 80/80 unit (13 nowych), mutacja widoczności „Import files” → czerwony | 2 | (ten commit) | 2026-11-05 |
+| 2.4 `LibraryScreen` (lista, stany, wybór folderu, import) | ✅ | 80/80 unit (13 nowych), mutacja widoczności „Import files” → czerwony | 2 | 8d24740 | 2026-11-05 |
+| 2.5 E2E biblioteki (wybór, pusty folder, restart) | ✅ | e2e iOS 5/5, Android 5/5 | 2 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -112,3 +115,4 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 2.3: `expo install expo-audio` dodał plugin z uprawnieniem do mikrofonu (NSMicrophoneUsageDescription, RECORD_AUDIO) — wyłączone `microphonePermission: false`, `recordAudioAndroid: false` (decyzja A2: tylko odczyt plików).
 - [2026-11-05] Task 2.3: test „stare czasy trwania” był pierwotnie bezużyteczny (różne id utworów w obu folderach → mutacja strażnika nie czerwieniła) — przepisany na nakładające się foldery (Rock → Rock/Favourites).
 - [2026-11-05] Task 2.4: test wejścia (`app/index.tsx`) wykrył, że `settingsStorage` (1.3) odrzucał pusty `uri`, a od 2.2 `documents` + `''` = cały folder aplikacji iOS — wybór „All music” nie przetrwałby restartu. Walidacja: pusty `uri` dozwolony tylko dla `documents`; przypadek testu „empty uri” zmieniony na „empty SAF uri” (źródło: Key decisions 2026-11-05, ścieżka względna iOS).
+- [2026-11-05] Task 2.5: iOS pokazywał `gamma-tone.m4a` jako 0:02 — AVPlayer podaje AAC odrobinę poniżej 3 s (priming), `formatDuration` obcina w dół. Pliki testowe mp3/m4a wydłużone do 3,5 s; test bez zmian.
