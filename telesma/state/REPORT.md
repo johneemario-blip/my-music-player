@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress
-- **Progress**: 3/23 tasks completed (faza 1: 1.1–1.3)
+- **Status**: In progress (faza 1 ukończona, następna: 2.1)
+- **Progress**: 4/23 tasks completed (faza 1: 1.1–1.4 ✅)
 
 ## Test status
 
@@ -32,13 +32,15 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 1 (2026-11-05) — GREEN:** unit `npm test -- --ci` 37/0, e2e Detox iOS (`ios.sim.release`) 1/0, Android (`android.emu.release`) 1/0; `tsc`, ESLint, Prettier czyste. Tag `telesma/phase-1`.
+
 | Metric | Value |
 |--------|-------|
-| Total tests | 37 |
-| Pass | 37 |
+| Total tests | 39 (37 unit + 2 e2e) |
+| Pass | 39 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 1.3, `npm test`) |
+| Last run | 2026-11-05 (regresja po fazie 1) |
 
 ## Task history
 
@@ -46,7 +48,8 @@ forever and grows in the prompt of every session.
 |------|--------|-------|-------|--------|------|
 | 1.1 Architecture skeleton and conventions | ✅ | 1/1, tsc 0, eslint 0, prettier ok, expo-doctor 20/20 | 1 | 9c72d62 | 2026-11-05 |
 | 1.2 Model domeny i czysta logika (`src/lib/track.ts`) | ✅ | 26/26 (25 nowych), mutacja reguły ogg → czerwony | 1 | 7ebe33c | 2026-11-05 |
-| 1.3 Pamięć ustawień (`settingsStorage`) | ✅ | 37/37 (11 nowych), mutacja walidacji `kind` → czerwony | 1 | (ten commit) | 2026-11-05 |
+| 1.3 Pamięć ustawień (`settingsStorage`) | ✅ | 37/37 (11 nowych), mutacja walidacji `kind` → czerwony | 1 | 4856d83 | 2026-11-05 |
+| 1.4 Konfiguracja Detox + e2e dymny | ✅ | e2e iOS 1/1 (iPhone 16), Android 1/1 (AVD MyMusicPlayer_E2E); unit 37/37 | 3 + BLOCKED (dysk, R8) | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -96,3 +99,9 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 1.1: Expo SDK 58 odrzuca `ios.deploymentTarget` 15.1 („needs to be at least version 16.4”) — minimum iOS podniesione do 16.4, decyzja A14 zaktualizowana w Key decisions (do potwierdzenia przez właściciela).
 - [2026-11-05] Task 1.1: konflikt peer `react@19.3.0` vs `react-test-renderer`/`react-dom` 19.3.1 — przypięte do 19.3.0.
 - [2026-11-05] Task 1.1: test w `app/__tests__/` byłby trasą expo-router — testy poza `app/` (`__tests__/`).
+- [2026-11-05] Task 1.4: `@config-plugins/detox@11` deklaruje peer `expo@^53` (ERESOLVE na SDK 58) — własny plugin `plugins/withDetox.js` na jego wzór.
+- [2026-11-05] Task 1.4: e2e jest padał na `Cannot find module 'babel-preset-expo'` — dodany jawnie do devDependencies; iOS e2e 1/1 zielony.
+- [2026-11-05] Task 1.4: pierwszy build Androida 21 min (4 ABI) — komendy Detox zawężone do `-PreactNativeArchitectures=arm64-v8a`.
+- [2026-11-05] Task 1.4: BLOCKED — emulator Androida nie startuje, na dysku ~301 MB wolnego; szczegóły w `telesma/state/BLOCKED.md`. Zmiany 1.4 niezatwierdzone (czekają na zielony Android).
+- [2026-11-05] Task 1.4: miejsce zwolnione przez właściciela; emulator Medium_Phone miał pełną pamięć (cudze aplikacje) — utworzony osobny AVD `MyMusicPlayer_E2E` (8 GB danych), `.detoxrc.js` wskazuje na niego.
+- [2026-11-05] Task 1.4: R8 w buildzie release wycina klasy, których używa Detox (`androidx.tracing.Trace`, `kotlin.coroutines.intrinsics.IntrinsicsKt`, `kotlin.ResultKt`) — 3 próby reguł keep, BLOCKED: wybór strategii (BLOCKED.md).

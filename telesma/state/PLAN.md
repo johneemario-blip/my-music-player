@@ -24,7 +24,7 @@
 - [x] Task 1.3: Pamięć ustawień `src/services/storage/settingsStorage.ts` — zapis/odczyt wybranego katalogu (`{ kind: 'saf' | 'documents', uri }`) w AsyncStorage, brak wpisu → `null`, uszkodzony wpis → `null` (requires: 1.1) (tech: react-native, typescript)
   - AC: zapisany katalog jest odczytywany po ponownym uruchomieniu aplikacji
 - [x] Test: 1.3 — testy z atrapą AsyncStorage: zapis, odczyt, brak wpisu, uszkodzony JSON
-- [ ] Task 1.4: Konfiguracja Detox (dev build: symulator iOS + emulator Android, skrypty `e2e:build:*`, `e2e:test:*`) + e2e dymny: aplikacja startuje i ekran główny jest widoczny (requires: 1.1, 1.2, 1.3) (tech: detox, typescript)
+- [x] Task 1.4: Konfiguracja Detox (dev build: symulator iOS + emulator Android, skrypty `e2e:build:*`, `e2e:test:*`) + e2e dymny: aplikacja startuje i ekran główny jest widoczny (requires: 1.1, 1.2, 1.3) (tech: detox, typescript)
 
 ### Phase 2: Biblioteka — wybór katalogu i lista utworów
 
