@@ -16,11 +16,11 @@
 
 - [x] Task 1.1: Architecture skeleton and conventions — projekt Expo (TS strict, expo-router, `app/index.tsx` z testID), mapa modułów z PROJECT_CONTEXT.md, teksty UI w `src/lib/strings.ts` (EN), typ `Result`, konwencja testID, Jest + RNTL, ESLint + Prettier, min. API 29 / iOS 15, portrait; wynik do PROJECT_CONTEXT.md (tech: react-native, typescript)
 - [x] Test: 1.1 — test dymny renderuje ekran główny; `npm test`, `npx tsc --noEmit` i lint przechodzą <!-- iOS min. 16.4 (wymóg SDK 58) -->
-- [ ] Task 1.2: Model domeny i czysta logika w `src/lib/`: typ `Track` (id, uri, name, durationMs), `isSupportedAudioFile(name, platform)` (mp3, wav, m4a, aac, flac; ogg tylko Android; pliki `.` pomijane), `sortTracks` alfabetycznie, `formatDuration(ms)` → `m:ss` (requires: 1.1) (spec: app.md) (tech: typescript)
+- [x] Task 1.2: Model domeny i czysta logika w `src/lib/`: typ `Track` (id, uri, name, durationMs), `isSupportedAudioFile(name, platform)` (mp3, wav, m4a, aac, flac; ogg tylko Android; pliki `.` pomijane), `sortTracks` alfabetycznie, `formatDuration(ms)` → `m:ss` (requires: 1.1) (spec: app.md) (tech: typescript)
   - AC: pliki o rozszerzeniach MP3 i WAV są rozpoznawane jako obsługiwane, pliki o innych rozszerzeniach (txt, jpg) nie
   - AC: nazwa na liście to nazwa pliku bez rozszerzenia
   - AC: `formatDuration` daje `0:00` dla 0 i braku wartości, `3:05` dla 185000 ms
-- [ ] Test: 1.2 — testy jednostkowe rozpoznawania rozszerzeń per platforma, sortowania i formatowania czasu
+- [x] Test: 1.2 — testy jednostkowe rozpoznawania rozszerzeń per platforma, sortowania i formatowania czasu
 - [ ] Task 1.3: Pamięć ustawień `src/services/storage/settingsStorage.ts` — zapis/odczyt wybranego katalogu (`{ kind: 'saf' | 'documents', uri }`) w AsyncStorage, brak wpisu → `null`, uszkodzony wpis → `null` (requires: 1.1) (tech: react-native, typescript)
   - AC: zapisany katalog jest odczytywany po ponownym uruchomieniu aplikacji
 - [ ] Test: 1.3 — testy z atrapą AsyncStorage: zapis, odczyt, brak wpisu, uszkodzony JSON

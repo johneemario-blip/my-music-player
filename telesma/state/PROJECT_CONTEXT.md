@@ -83,7 +83,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 1.1 Architecture skeleton and conventions (Expo SDK 58, RN 0.88, React 19.3, TS 6, Jest 30 + jest-expo, RNTL 14, ESLint 9 flat + Prettier)
-- Next task: 1.2 Model domeny i czysta logika
+- Last completed task: 1.2 Model domeny (`src/lib/track.ts`: Track, isSupportedAudioFile, trackNameFromFileName, sortTracks, formatDuration)
+- Next task: 1.3 Pamięć ustawień (settingsStorage)
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

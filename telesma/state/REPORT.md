@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress
-- **Progress**: 1/23 tasks completed (faza 1: 1.1 gotowe)
+- **Progress**: 2/23 tasks completed (faza 1: 1.1, 1.2)
 
 ## Test status
 
@@ -34,17 +34,18 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 1 |
-| Pass | 1 |
+| Total tests | 26 |
+| Pass | 26 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 1.1, `npm test`) |
+| Last run | 2026-11-05 (task 1.2, `npm test`) |
 
 ## Task history
 
 | Task | Status | Tests | Tries | Commit | Time |
 |------|--------|-------|-------|--------|------|
-| 1.1 Architecture skeleton and conventions | ✅ | 1/1, tsc 0, eslint 0, prettier ok, expo-doctor 20/20 | 1 | (ten commit) | 2026-11-05 |
+| 1.1 Architecture skeleton and conventions | ✅ | 1/1, tsc 0, eslint 0, prettier ok, expo-doctor 20/20 | 1 | 9c72d62 | 2026-11-05 |
+| 1.2 Model domeny i czysta logika (`src/lib/track.ts`) | ✅ | 26/26 (25 nowych), mutacja reguły ogg → czerwony | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 

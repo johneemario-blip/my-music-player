@@ -7,10 +7,10 @@
 
 ## Files
 
-### Aplikacja jest odtwarzaczem plików audio (2 lines)
+### app.md (2 lines)
 Jednoakapitowy opis funkcjonalny prostego mobilnego odtwarzacza audio: wybór katalogu, lista utworów,
-play/stop/pauza, suwak postępu, platformy Android i iOS. Plik bez rozszerzenia i bez końcowego znaku
-nowej linii (`wc -l` zgłasza 1 linię, narzędzie Read widzi 2 — numeracja poniżej według Read).
+play/stop/pauza, suwak postępu, platformy Android i iOS. Plik `telesma/spec/app.md` (wcześniej bez
+rozszerzenia; zakresy linii zweryfikowane 2026-11-05, kotwica w linii 1).
 
 #### Sections:
 | Lines | Section | Anchor | Description |
