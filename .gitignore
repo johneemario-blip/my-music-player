@@ -50,3 +50,5 @@ __pycache__/
 telesma/artifacts/
 telesma/state/PERMISSIONS.jsonl
 telesma/state/CHECKS.jsonl
+.claude/settings.local.json
+.claude/hooks/

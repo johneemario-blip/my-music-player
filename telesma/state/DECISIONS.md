@@ -25,3 +25,9 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Uzgodniliśmy, że build e2e Androida (`detox build -c android.emu.*`) idzie z `-Pandroid.enableMinifyInReleaseBuilds=false`, a produkcyjny build release zostaje z R8 bez dodatkowych reguł keep (reguły z prób wycofane). Konsekwencja: e2e nie wykrywa błędów wprowadzonych przez samo R8. Odrzucone: `-keep kotlin.**` w produkcji (większy APK) i e2e na debug (wymaga Metro).
 **Impact**: Task 1.4, `.detoxrc.js`, `plugins/withDetox.js`, `app.json`
 
+## 2026-11-05 13:10 — Wydanie wersji v0.1.0
+**Kind**: operations
+**Question/context**: Po zielonej regresji fazy 1 zaproponowałem pierwszą wersję; właściciel odpowiedział „tak”.
+**Outcome**: Uzgodniliśmy wydanie v0.1.0 — szkielet aplikacji startujący na iOS i Androidzie z ekranem głównym, rozpoznawaniem plików audio i zapamiętywaniem katalogu. Scenariusze ręczne w `docs/test-scenarios/v0.1.0.md`; wypchnięcie tagu należy do właściciela.
+**Impact**: faza 1, tag `v0.1.0`
+
