@@ -43,3 +43,9 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Uzgodniliśmy wydanie v0.2.0 — wybór folderu z muzyką na obu platformach, lista z czasami trwania i odtwarzanie z paskiem sterowania (bez odtwarzania w tle). Scenariusze ręczne w `docs/test-scenarios/v0.2.0.md`; wypchnięcie tagu należy do właściciela.
 **Impact**: fazy 2–3, tag `v0.2.0`
 
+## 2026-11-05 15:47 — Ekran blokady bez następny/poprzedni w v1
+**Kind**: correction
+**Question/context**: W 5.1 wyszło, że expo-audio obsługuje następny/poprzedni z ekranu blokady tylko dla natywnej `AudioPlaylist`; zapytałem o wybór: (a) bez tych przycisków w v1, (b) przejście na `AudioPlaylist`, (c) react-native-track-player. Właściciel wybrał (a).
+**Outcome**: Uzgodniliśmy, że w v1 ekran blokady i powiadomienie medialne mają tylko play/pauzę i tytuł utworu; następny/poprzedni działają w aplikacji. Przyciski skoku na ekranie blokady trafiają do BACKLOG (P2). Odrzucone na teraz: (b) — przepisanie kolejki z 3.1–3.2 i ryzyko regresji pomijania nieczytelnych plików na iOS; (c) — nowa natywna zależność o niepewnej zgodności z New Architecture. Warunek powrotu: element BACKLOG „Następny/poprzedni na ekranie blokady”.
+**Impact**: Task 5.1, 5.2, 5.3; `src/services/audio/expoPlayerAdapter.ts`
+

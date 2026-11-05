@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress (faza 4)
-- **Progress**: 15/23 tasks completed (fazy 1–4 ✅)
+- **Status**: In progress (faza 5)
+- **Progress**: 16/23 tasks completed (fazy 1–4 ✅, faza 5: 5.1)
 
 ## Test status
 
@@ -42,11 +42,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 157 (135 unit + 11 e2e × 2 platformy) |
-| Pass | 157 |
+| Total tests | 160 (138 unit + 11 e2e × 2 platformy) |
+| Pass | 160 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (regresja po fazie 4) |
+| Last run | 2026-11-05 (task 5.1, `npm test`) |
 
 ## Task history
 
@@ -67,6 +67,7 @@ forever and grows in the prompt of every session.
 | 3.4 E2E odtwarzacza (play, pauza, stop, suwak, następny/poprzedni, auto-następny, koniec listy) | ✅ | e2e iOS 10/10 ×3 przebiegi, Android 10/10 | 3 | 75f43fa | 2026-11-05 |
 | 4.1 Odtwarzanie w tle (tryb audio, sesja Now Playing, synchronizacja zewnętrznej pauzy, AppState) | ✅ | 135/135 unit (7 nowych), mutacje `shouldPlayInBackground` i `awaitingNative` → czerwone | 1 | 435d2ce | 2026-11-05 |
 | 4.2 E2E odtwarzania w tle (3 s na ekranie głównym, pozycja +3 s, „Pause”) | ✅ | e2e iOS 11/11, Android 11/11; mutacja `shouldPlayInBackground` → test tła czerwony (iOS) | 1 | ece754e | 2026-11-05 |
+| 5.1 Now Playing + play/pauza z ekranu blokady (następny/poprzedni → BACKLOG, decyzja właściciela) | ✅ | 138/138 unit (3 nowe) | 1 + BLOCKED (wybór a/b/c) | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -133,3 +134,4 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 3.4: jednorazowa porażka „stop po ostatnim utworze” na iOS w pełnym przebiegu (przed poprawką `memo`), nie powtórzyła się w 4 kolejnych przebiegach — obserwować.
 - [2026-11-05] Task 4.1: ostrzeżenia `tests/test-pinned-to-code` (usePlayer.test.ts, expoPlayerAdapter.test.ts) — testy rozszerzone o nowe zachowania 4.1 (tryb tła, `setNowPlaying`, resynchronizacja), żadna asercja nie osłabiona; zostają.
 - [2026-11-05] Task 4.2: e2e grania w tle wymaga dłuższego utworu — dodany folder e2e „Long” (`long-tone.mp3`, 15,5 s), „Fixtures” bez zmian; jedyne celowe czekanie w e2e (`stayInBackground`), bo aplikacja jest wtedy w tle.
+- [2026-11-05] Task 5.1: expo-audio — next/previous z ekranu blokady tylko dla `AudioPlaylist`, dla `AudioPlayer` pusta implementacja (MediaController.swift); BLOCKED: wybór a/b/c (BLOCKED.md).

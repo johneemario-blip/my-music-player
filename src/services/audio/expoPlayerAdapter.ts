@@ -77,7 +77,13 @@ export function createExpoPlayerAdapter(): PlayerAdapter {
         current.setActiveForLockScreen(
           true,
           { title: info.title },
-          { showSeekForward: false, showSeekBackward: false },
+          // Track skipping from the lock screen needs a native AudioPlaylist — not in v1.
+          {
+            showSeekForward: false,
+            showSeekBackward: false,
+            showNextTrack: false,
+            showPreviousTrack: false,
+          },
         ),
       );
     },

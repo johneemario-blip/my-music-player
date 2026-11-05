@@ -158,6 +158,18 @@ describe('usePlayer', () => {
     expect(result.current.currentTrack).toBeNull();
   });
 
+  it('follows pause and play pressed on the lock screen', async () => {
+    const { result, adapter } = await renderPlayer();
+    await act(async () => result.current.playTrack(0));
+    await act(async () => adapter.emit({ isPlaying: true, positionMs: 500 }));
+    await act(async () => adapter.emit({ isPlaying: false, positionMs: 900 }));
+    expect(result.current.state.playback).toBe('paused');
+
+    await act(async () => adapter.emit({ isPlaying: true, positionMs: 900 }));
+    expect(result.current.state.playback).toBe('playing');
+    expect(adapter.load).toHaveBeenCalledTimes(1);
+  });
+
   it('shows the playing track on the lock screen and updates it on track change', async () => {
     const { result, adapter } = await renderPlayer();
 

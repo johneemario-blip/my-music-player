@@ -135,6 +135,27 @@ describe('createExpoPlayerAdapter', () => {
     expect(mockPlayer.seekTo).toHaveBeenCalledWith(0);
   });
 
+  it('shows the track title on the lock screen with play/pause only', () => {
+    const adapter = createExpoPlayerAdapter();
+
+    adapter.setNowPlaying({ title: 'Alpha Song' });
+
+    expect(mockPlayer.setActiveForLockScreen).toHaveBeenCalledWith(
+      true,
+      { title: 'Alpha Song' },
+      expect.objectContaining({ showNextTrack: false, showPreviousTrack: false }),
+    );
+  });
+
+  it('ends the lock-screen session', () => {
+    const adapter = createExpoPlayerAdapter();
+    adapter.setNowPlaying({ title: 'Alpha Song' });
+
+    adapter.setNowPlaying(null);
+
+    expect(mockPlayer.setActiveForLockScreen).toHaveBeenLastCalledWith(false);
+  });
+
   it('releases the native player', () => {
     const adapter = createExpoPlayerAdapter();
     adapter.play();

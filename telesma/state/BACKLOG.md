@@ -54,3 +54,7 @@ Full procedure: section 13 in `templates/instructions/INTERACTIVE.md`.
 <!-- Add items below, grouped into ## sections per area when there are >10 entries -->
 
 ## Unclassified (to triage)
+
+- [ ] **Następny/poprzedni na ekranie blokady** — `P2` `player`
+  - **Context**: 2026-11-05, zadanie 5.1. expo-audio obsługuje te przyciski tylko dla natywnej `AudioPlaylist`; aplikacja stoi na pojedynczym `AudioPlayer`. Właściciel wybrał wariant (a): w v1 na ekranie blokady tylko play/pauza i tytuł.
+  - **Suggested solution**: przejście adaptera na `AudioPlaylist` (kolejka natywna, reducer śledzi `currentIndex` ze statusu) po sprawdzeniu, jak playlista na iOS traktuje nieczytelny plik; alternatywnie react-native-track-player, gdy potwierdzi zgodność z New Architecture.

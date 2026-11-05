@@ -79,12 +79,12 @@
 
 ### Phase 5: Sterowanie z ekranu blokady
 
-- [ ] Task 5.1: Metadane „Now Playing” i zdalne komendy (play/pauza/następny/poprzedni) z ekranu blokady i powiadomienia medialnego — przez expo-audio, a gdy SDK tego nie ma, przez `react-native-track-player` za `PlayerAdapter`; wybór do Key decisions (requires: 4.1, 3.2) (spec: app.md) (tech: react-native, typescript)
+- [x] Task 5.1: Metadane „Now Playing” i zdalne komendy play/pauza z ekranu blokady i powiadomienia medialnego przez expo-audio za `PlayerAdapter`; następny/poprzedni tylko w aplikacji (BACKLOG, DECISIONS.md 2026-11-05 15:47) (requires: 4.1, 3.2) (spec: app.md) (tech: react-native, typescript)
   - AC: entry — użytkownik naciska pauzę na ekranie blokady → odtwarzacz w aplikacji pauzuje i odwrotnie
   - AC: ekran blokady pokazuje nazwę granego utworu
-- [ ] Test: 5.1 — testy jednostkowe mapowania zdalnych komend na akcje reducera i aktualizacji metadanych przy zmianie utworu
+- [x] Test: 5.1 — testy jednostkowe mapowania zdalnych komend na akcje reducera i aktualizacji metadanych przy zmianie utworu
 - [ ] Task 5.2: E2E test — regresja pełnego scenariusza z fazy 3 przy włączonej sesji medialnej (lista → play → pauza → następny → stop) (iOS + Android) (requires: 5.1) (spec: app.md) (tech: detox, typescript)
-- [ ] ⛔ Task 5.3: Test ręczny na fizycznym iPhonie i telefonie z Androidem: sterowanie z ekranu blokady i powiadomienia, wynik zapisany w REPORT.md (requires: 5.1, 5.2) (spec: app.md)
+- [ ] ⛔ Task 5.3: Test ręczny na fizycznym iPhonie i telefonie z Androidem: play/pauza i tytuł na ekranie blokady i w powiadomieniu, wynik zapisany w REPORT.md (requires: 5.1, 5.2) (spec: app.md)
 
 ### Phase 6: Wykończenie
 

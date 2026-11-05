@@ -60,7 +60,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 | 2026-11-05 | 📌 iOS: `SavedDirectory` typu `documents` przechowuje ścieżkę WZGLĘDNĄ do `Paths.document` (`` = cały folder aplikacji), nigdy absolutny URI; „Choose folder” na iOS = lista folderów z `listFolders()`, import przez `importFiles()` (kolizje nazw → „name (2).ext”) | Ścieżka kontenera aplikacji iOS zmienia się po reinstalacji/aktualizacji — zadanie 2.2 |
 | 2026-11-05 | Bez `"type": "module"` w package.json mimo typescript.md — Metro/Babel/Jest w Expo zakładają CommonJS dla plików konfiguracyjnych; kod źródłowy i tak w składni ESM, `verbatimModuleSyntax` włączone | Konflikt wytycznej z narzędziami Expo; zadanie 1.1 |
 | 2026-11-05 | 📌 E2E: Detox na buildach release (bez Metro); Android e2e budowany z `-Pandroid.enableMinifyInReleaseBuilds=false` i tylko arm64-v8a, na dedykowanym AVD `MyMusicPlayer_E2E`; build produkcyjny z R8 bez reguł keep Detoxa; integracja Detox na Androidzie przez lokalny `plugins/withDetox.js` (oficjalny plugin tylko Expo 53) | R8 wycina klasy Kotlina potrzebne Detoxowi → DECISIONS.md 2026-11-05 13:01 |
-| 2026-11-05 | 📌 Sesja „Now Playing” (`setActiveForLockScreen`) włączana przy każdym załadowanym utworze już od 4.1, nie dopiero w 5.1; sterowanie z ekranu blokady przez expo-audio, bez react-native-track-player; reducer przejmuje pauzę/wznowienie spoza aplikacji dopiero po potwierdzeniu własnego polecenia (`awaitingNative`) | Na Androidzie expo-audio startuje usługę pierwszoplanową tylko przez sesję ekranu blokady — bez niej system może zabić grający proces w tle; zadanie 4.1 |
+| 2026-11-05 | 📌 Sesja „Now Playing” (`setActiveForLockScreen`) włączana przy każdym załadowanym utworze już od 4.1, nie dopiero w 5.1; ekran blokady w v1: tylko play/pauza + tytuł (expo-audio `AudioPlayer`, bez react-native-track-player i bez `AudioPlaylist`), następny/poprzedni tylko w aplikacji; reducer przejmuje pauzę/wznowienie spoza aplikacji dopiero po potwierdzeniu własnego polecenia (`awaitingNative`) | Na Androidzie usługa pierwszoplanowa startuje tylko przez sesję ekranu blokady (4.1); następny/poprzedni z ekranu blokady expo-audio daje tylko dla `AudioPlaylist` → DECISIONS.md 2026-11-05 15:47 |
 | 2026-11-05 | Zależności instalowane przez `npx expo install`; przy konflikcie peer (react-dom/react-test-renderer) przypiąć do wersji `react` z SDK (19.3.0) zamiast `--legacy-peer-deps` | Zadanie 1.1 |
 | 2026-11-05 | Stany brzegowe z komunikatem w aplikacji: pusty katalog, cofnięte uprawnienie (prośba o ponowny wybór), plik usunięty/nieczytelny (komunikat + następny) | Obsługa błędów nieopisana w spec → QUESTIONS.md A15 |
 | 2026-11-05 | Uruchamianie i testy lokalnie na tym Macu; publikacja w sklepach, konta deweloperskie i podpisywanie poza zakresem | Spec nie wspomina o dystrybucji → QUESTIONS.md A16 |
@@ -91,7 +91,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 4.2 E2E grania w tle — fazy 1–4 ukończone, regresja zielona (unit 135, e2e iOS 11 + Android 11), tag `telesma/phase-4`
-- Next task: 5.1 Now Playing + zdalne komendy (sesja włączona już w 4.1; zostaje mapowanie komend, następny/poprzedni)
+- Last completed task: 5.1 Now Playing (ekran blokady: tytuł + play/pauza; bez przycisków skoku — DECISIONS.md 2026-11-05 15:47)
+- Next task: 5.2 E2E regresja z sesją medialną
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
