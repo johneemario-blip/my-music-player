@@ -81,3 +81,8 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Usunięte: `node_modules`, wygenerowane `ios/` i `android/` (z APK i buildami), `.expo`, `.DS_Store`. Projekt zmniejszył się z około 14 GB do 4,6 MB. Zostały ikony aplikacji z `assets/` i pliki testowe audio z `e2e/fixtures` (są potrzebne do budowania i testów), a także `.claude/` i `telesma/`. Odtworzenie środowiska: `npm install`, potem `npm run prebuild` albo `npx expo run:*`. Globalne cache poza projektem (Gradle, Metro, CocoaPods, obrazy emulatorów) nie były ruszane.
 **Impact**: cały katalog projektu
 
+## 2026-11-05 23:00 — Stan na GitHubie
+**Kind**: question
+**Question/context**: Właściciel zapytał, czy projekt jest wrzucony na GitHuba.
+**Outcome**: No decision — awaits: zgoda na `git push origin main`. Repo `origin` (github.com/johneemario-blip/my-music-player) istnieje, ale lokalny `main` jest 31 commitów przed `origin/main` (konfiguracja: Auto-push: no). Wersje wydania wypycha się osobnym poleceniem.
+
