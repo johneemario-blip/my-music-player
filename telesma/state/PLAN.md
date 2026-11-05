@@ -33,11 +33,11 @@
   - AC: lista zawiera obsługiwane pliki audio z wybranego katalogu i jego podkatalogów, pliki ukryte pominięte
   - AC: po ponownym uruchomieniu aplikacji dostęp do katalogu działa bez ponownego wyboru
 - [x] Test: 2.1 — testy z atrapą FileSystem: rekurencja, filtr rozszerzeń, odmowa uprawnienia zwraca błąd, nie wyjątek
-- [ ] Task 2.2: `LibrarySource` dla iOS: Documents aplikacji widoczne w Pliki (`UIFileSharingEnabled`, `LSSupportsOpeningDocumentsInPlace`), „Choose folder” wybiera Documents lub podkatalog, „Import files” przez `expo-document-picker` kopiuje pliki do Documents (requires: 2.1) (spec: app.md) (tech: react-native, typescript)
+- [x] Task 2.2: `LibrarySource` dla iOS: Documents aplikacji widoczne w Pliki (`UIFileSharingEnabled`, `LSSupportsOpeningDocumentsInPlace`), „Choose folder” wybiera Documents lub podkatalog, „Import files” przez `expo-document-picker` kopiuje pliki do Documents (requires: 2.1) (spec: app.md) (tech: react-native, typescript)
   - AC: entry — użytkownik dotyka „Choose folder” na iOS → lista podkatalogów Documents; „Import files” → systemowy wybór plików
   - AC: pliki wrzucone do folderu aplikacji w Pliki pojawiają się na liście po wyborze katalogu
   - AC: zaimportowane pliki trafiają do Documents i są widoczne na liście
-- [ ] Test: 2.2 — testy z atrapą FileSystem i DocumentPicker: listowanie podkatalogów, import kopiuje tylko obsługiwane pliki
+- [x] Test: 2.2 — testy z atrapą FileSystem i DocumentPicker: listowanie podkatalogów, import kopiuje tylko obsługiwane pliki
 - [ ] Task 2.3: Stan biblioteki `useLibrary` w `src/features/library/`: przy starcie odczyt katalogu z 1.3 i skan, stany `idle | loading | ready | empty | error`; w buildzie e2e `LibrarySource` podmieniony na katalog z plikami testowymi (requires: 1.3, 2.1, 2.2) (spec: app.md) (tech: react-native, typescript)
   - AC: pusty katalog daje stan `empty`, katalog z plikami stan `ready` z posortowaną listą
   - AC: zmiana katalogu zastępuje listę, nie dokleja do niej

@@ -57,6 +57,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 | 2026-11-05 | 📌 Język interfejsu: angielski domyślnie; wszystkie teksty w `src/lib/strings.ts`, bez pełnego mechanizmu i18n | Użytkownik odrzucił polski jako domyślny ("ustaw domyślnie angielski") → QUESTIONS.md A12 |
 | 2026-11-05 | ~~Minimalne wersje: Android 10 (API 29), iOS 15~~ → Android 10 (API 29), iOS 16.4; telefon, orientacja portrait, tablet bez osobnego układu | superseded: Expo SDK 58 (przypięty stack) wymaga `ios.deploymentTarget` ≥ 16.4 — zadanie 1.1; API 29 wymusza SAF → QUESTIONS.md A14 |
 | 2026-11-05 | 📌 Konwencje 1.1: aliasy `@/*` → `src/*`; teksty UI tylko z `src/lib/strings.ts`; testID `'<feature>.<element>'` w `src/lib/testIds.ts`; błędy oczekiwane jako `Result<T, E>` z `src/lib/result.ts`; testy Jest w `__tests__/` lub `*.test.ts(x)` obok źródła, NIGDY w `app/` (expo-router traktuje każdy plik w `app/` jako trasę) | Jeden wzorzec dla RNTL i Detox; zadanie 1.1 |
+| 2026-11-05 | 📌 iOS: `SavedDirectory` typu `documents` przechowuje ścieżkę WZGLĘDNĄ do `Paths.document` (`` = cały folder aplikacji), nigdy absolutny URI; „Choose folder” na iOS = lista folderów z `listFolders()`, import przez `importFiles()` (kolizje nazw → „name (2).ext”) | Ścieżka kontenera aplikacji iOS zmienia się po reinstalacji/aktualizacji — zadanie 2.2 |
 | 2026-11-05 | Bez `"type": "module"` w package.json mimo typescript.md — Metro/Babel/Jest w Expo zakładają CommonJS dla plików konfiguracyjnych; kod źródłowy i tak w składni ESM, `verbatimModuleSyntax` włączone | Konflikt wytycznej z narzędziami Expo; zadanie 1.1 |
 | 2026-11-05 | 📌 E2E: Detox na buildach release (bez Metro); Android e2e budowany z `-Pandroid.enableMinifyInReleaseBuilds=false` i tylko arm64-v8a, na dedykowanym AVD `MyMusicPlayer_E2E`; build produkcyjny z R8 bez reguł keep Detoxa; integracja Detox na Androidzie przez lokalny `plugins/withDetox.js` (oficjalny plugin tylko Expo 53) | R8 wycina klasy Kotlina potrzebne Detoxowi → DECISIONS.md 2026-11-05 13:01 |
 | 2026-11-05 | Zależności instalowane przez `npx expo install`; przy konflikcie peer (react-dom/react-test-renderer) przypiąć do wersji `react` z SDK (19.3.0) zamiast `--legacy-peer-deps` | Zadanie 1.1 |
@@ -85,7 +86,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 2.1 `LibrarySource` (interfejs + `androidLibrarySource` na `Directory.pickDirectoryAsync` z expo-file-system; atrapa `src/test/fakeFileSystem.ts`; `durationMs` = null przy skanie)
-- Next task: 2.2 LibrarySource iOS (Documents + import)
+- Last completed task: 2.2 `iosLibrarySource` (`DocumentsLibrarySource`: listFolders, importFiles; Info.plist UIFileSharingEnabled + LSSupportsOpeningDocumentsInPlace)
+- Next task: 2.3 `useLibrary` (stan biblioteki)
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
