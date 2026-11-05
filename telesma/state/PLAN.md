@@ -52,10 +52,10 @@
 
 ### Phase 3: Odtwarzacz — play, pauza, stop, suwak, kolejka
 
-- [ ] Task 3.1: Interfejs `PlayerAdapter` (`load`, `play`, `pause`, `stop`, `seekTo`, `onStatus` → pozycja, czas trwania, isPlaying, didJustFinish, error) + implementacja na `expo-audio` w `src/services/audio/`; tryb audio: gra przy przełączniku wyciszenia iOS, przerwanie (połączenie) pauzuje (requires: 1.2) (spec: app.md) (tech: react-native, typescript)
+- [x] Task 3.1: Interfejs `PlayerAdapter` (`load`, `play`, `pause`, `stop`, `seekTo`, `onStatus` → pozycja, czas trwania, isPlaying, didJustFinish, error) + implementacja na `expo-audio` w `src/services/audio/`; tryb audio: gra przy przełączniku wyciszenia iOS, przerwanie (połączenie) pauzuje (requires: 1.2) (spec: app.md) (tech: react-native, typescript)
   - AC: plik MP3 i WAV z katalogu ładuje się i odtwarza przez dekoder systemowy
   - AC: plik, którego nie da się odtworzyć, zgłasza `error` w statusie zamiast wyjątku
-- [ ] Test: 3.1 — test kontraktu adaptera z atrapą expo-audio: mapowanie statusów, błąd ładowania, seek
+- [x] Test: 3.1 — test kontraktu adaptera z atrapą expo-audio: mapowanie statusów, błąd ładowania, seek
 - [ ] Task 3.2: Kolejka i maszyna stanów odtwarzacza w `src/features/player/` (czysty reducer + hook `usePlayer`): play/pauza, stop, poprzedni/następny, auto-następny, plik nieczytelny → komunikat i przejście dalej; strategia kolejki wymienna pod repeat/shuffle (requires: 3.1, 2.3) (spec: app.md) (tech: typescript)
   - AC: entry — dotknięcie wiersza listy startuje odtwarzanie tego utworu od 0
   - AC: pauza zatrzymuje z zachowaniem pozycji, ponowne play wznawia od tej pozycji

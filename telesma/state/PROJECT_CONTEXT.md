@@ -88,7 +88,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 2.5 E2E biblioteki — fazy 1–2 ukończone, regresja zielona (unit 80, e2e iOS 5 + Android 5), tag `telesma/phase-2`
-- Next task: 3.1 `PlayerAdapter` na expo-audio
+- Last completed task: 3.1 `PlayerAdapter` (`src/services/audio/`: interfejs + `createExpoPlayerAdapter` na jednym `createAudioPlayer`, `configureAudioSession` — silent switch ignorowany, przerwania pauzują)
+- Next task: 3.2 kolejka + reducer + `usePlayer`
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

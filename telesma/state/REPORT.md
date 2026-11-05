@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress (faza 2)
-- **Progress**: 9/23 tasks completed (fazy 1–2 ✅)
+- **Status**: In progress (faza 3)
+- **Progress**: 10/23 tasks completed (fazy 1–2 ✅, faza 3: 3.1)
 
 ## Test status
 
@@ -38,11 +38,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 90 (80 unit + 5 e2e × 2 platformy) |
-| Pass | 90 |
+| Total tests | 99 (89 unit + 5 e2e × 2 platformy) |
+| Pass | 99 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (regresja po fazie 2) |
+| Last run | 2026-11-05 (task 3.1, `npm test`) |
 
 ## Task history
 
@@ -57,6 +57,7 @@ forever and grows in the prompt of every session.
 | 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | 979f53a | 2026-11-05 |
 | 2.4 `LibraryScreen` (lista, stany, wybór folderu, import) | ✅ | 80/80 unit (13 nowych), mutacja widoczności „Import files” → czerwony | 2 | 8d24740 | 2026-11-05 |
 | 2.5 E2E biblioteki (wybór, pusty folder, restart) | ✅ | e2e iOS 5/5, Android 5/5 | 2 | 14964b2 | 2026-11-05 |
+| 3.1 `PlayerAdapter` + expo-audio | ✅ | 89/89 unit (9 nowych), mutacja „błąd zamiast wyjątku” → czerwony | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
