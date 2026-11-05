@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress (faza 6; 5.3 czeka na test ręczny właściciela)
-- **Progress**: 20/23 tasks completed (fazy 1–4 ✅, faza 5: 5.3 ⛔, faza 6: 6.1–6.2)
+- **Status**: Waiting (wszystkie zadania autonomiczne ukończone; 5.3 ⛔ czeka na test ręczny właściciela)
+- **Progress**: 22/23 tasks completed (fazy 1–4 i 6 ✅, faza 5: 5.3 ⛔)
 
 ## Test status
 
@@ -32,6 +32,8 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 6 (2026-11-05) — GREEN:** unit `npm test -- --ci` 149/0, e2e Detox iOS 12/0 i Android 12/0 z finalną konfiguracją (ikona, splash); `tsc`, ESLint, Prettier czyste, expo-doctor 20/20. Faza 5 bez tagu — czeka na test ręczny 5.3. Tag `telesma/phase-6`.
+
 **Regression after Phase 4 (2026-11-05) — GREEN:** unit `npm test -- --ci` 135/0, e2e Detox iOS 11/0 i Android 11/0 (nowy: granie w tle); `tsc`, ESLint, Prettier czyste. Względem fazy 3: +7 unit, +1 e2e na platformę. Tag `telesma/phase-4`.
 
 **Regression after Phase 3 (2026-11-05) — GREEN:** unit `npm test -- --ci` 128/0 (11 plików), e2e Detox iOS 10/0 (3 kolejne przebiegi) i Android 10/0; `tsc`, ESLint, Prettier czyste. Względem fazy 2: +48 unit, +5 e2e na platformę. Tag `telesma/phase-3`.
@@ -46,7 +48,7 @@ forever and grows in the prompt of every session.
 | Pass | 173 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 6.1: unit + pełne e2e) |
+| Last run | 2026-11-05 (regresja po fazie 6) |
 
 ## Task history
 
@@ -70,7 +72,8 @@ forever and grows in the prompt of every session.
 | 5.1 Now Playing + play/pauza z ekranu blokady (następny/poprzedni → BACKLOG, decyzja właściciela) | ✅ | 138/138 unit (3 nowe) | 1 + BLOCKED (wybór a/b/c) | 869d745 | 2026-11-05 |
 | 5.2 E2E regresja z sesją medialną + naprawa „następny utwór czasem nie startuje” (iOS) | ✅ | unit 143/143 (5 nowych), e2e iOS 12/12 i Android 12/12, stres iOS 10/10 | 3 | f8030ec | 2026-11-05 |
 | 6.1 Tożsamość aplikacji (ikona, splash jasny/ciemny, test konfiguracji) | ✅ | unit 149/149 (6 nowych), `expo config` bez ostrzeżeń, expo-doctor 20/20, e2e iOS 12/12 i Android 12/12 | 1 | 5c31297 | 2026-11-05 |
-| 6.2 README (EN): uruchomienie, testy, muzyka na iOS/Androidzie, ograniczenia | ✅ | dokumentacja; Prettier ok | 1 | (ten commit) | 2026-11-05 |
+| 6.2 README (EN): uruchomienie, testy, muzyka na iOS/Androidzie, ograniczenia | ✅ | dokumentacja; Prettier ok | 1 | 64daa07 | 2026-11-05 |
+| 6.3 E2E pełny przebieg (fazy 1–5) z finalną konfiguracją | ✅ | e2e iOS 12/12, Android 12/12; unit 149/149 | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
