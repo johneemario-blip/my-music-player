@@ -31,11 +31,24 @@
       [
         "expo-build-properties",
         {
-          "android": { "minSdkVersion": 29 },
-          "ios": { "deploymentTarget": "16.4" }
+          "android": {
+            "minSdkVersion": 29
+          },
+          "ios": {
+            "deploymentTarget": "16.4"
+          }
         }
       ],
-      "./plugins/withDetox"
+      "./plugins/withDetox",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": true
+        }
+      ],
+      "expo-asset"
     ]
   }
 }

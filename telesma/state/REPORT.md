@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 2)
-- **Progress**: 6/23 tasks completed (faza 1 ✅, faza 2: 2.1–2.2)
+- **Progress**: 7/23 tasks completed (faza 1 ✅, faza 2: 2.1–2.3)
 
 ## Test status
 
@@ -36,11 +36,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 58 (56 unit + 2 e2e) |
-| Pass | 58 |
+| Total tests | 69 (67 unit + 2 e2e) |
+| Pass | 69 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 2.2, `npm test`) |
+| Last run | 2026-11-05 (task 2.3, `npm test`) |
 
 ## Task history
 
@@ -51,7 +51,8 @@ forever and grows in the prompt of every session.
 | 1.3 Pamięć ustawień (`settingsStorage`) | ✅ | 37/37 (11 nowych), mutacja walidacji `kind` → czerwony | 1 | 4856d83 | 2026-11-05 |
 | 1.4 Konfiguracja Detox + e2e dymny | ✅ | e2e iOS 1/1 (iPhone 16), Android 1/1 (AVD MyMusicPlayer_E2E); unit 37/37 | 3 + BLOCKED (dysk, R8) | 7649a5a | 2026-11-05 |
 | 2.1 `LibrarySource` + Android SAF (`src/services/files/`) | ✅ | 47/47 unit (10 nowych), mutacja pomijania ukrytych → czerwony | 1 | a48c69b | 2026-11-05 |
-| 2.2 `LibrarySource` iOS (Documents + import) | ✅ | 56/56 unit (9 nowych), mutacja filtra importu → czerwony | 1 | (ten commit) | 2026-11-05 |
+| 2.2 `LibrarySource` iOS (Documents + import) | ✅ | 56/56 unit (9 nowych), mutacja filtra importu → czerwony | 1 | 7009f79 | 2026-11-05 |
+| 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -107,3 +108,5 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 1.4: BLOCKED — emulator Androida nie startuje, na dysku ~301 MB wolnego; szczegóły w `telesma/state/BLOCKED.md`. Zmiany 1.4 niezatwierdzone (czekają na zielony Android).
 - [2026-11-05] Task 1.4: miejsce zwolnione przez właściciela; emulator Medium_Phone miał pełną pamięć (cudze aplikacje) — utworzony osobny AVD `MyMusicPlayer_E2E` (8 GB danych), `.detoxrc.js` wskazuje na niego.
 - [2026-11-05] Task 1.4: R8 w buildzie release wycina klasy, których używa Detox (`androidx.tracing.Trace`, `kotlin.coroutines.intrinsics.IntrinsicsKt`, `kotlin.ResultKt`) — 3 próby reguł keep, BLOCKED: wybór strategii (BLOCKED.md).
+- [2026-11-05] Task 2.3: `expo install expo-audio` dodał plugin z uprawnieniem do mikrofonu (NSMicrophoneUsageDescription, RECORD_AUDIO) — wyłączone `microphonePermission: false`, `recordAudioAndroid: false` (decyzja A2: tylko odczyt plików).
+- [2026-11-05] Task 2.3: test „stare czasy trwania” był pierwotnie bezużyteczny (różne id utworów w obu folderach → mutacja strażnika nie czerwieniła) — przepisany na nakładające się foldery (Rock → Rock/Favourites).

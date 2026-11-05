@@ -38,11 +38,11 @@
   - AC: pliki wrzucone do folderu aplikacji w Pliki pojawiają się na liście po wyborze katalogu
   - AC: zaimportowane pliki trafiają do Documents i są widoczne na liście
 - [x] Test: 2.2 — testy z atrapą FileSystem i DocumentPicker: listowanie podkatalogów, import kopiuje tylko obsługiwane pliki
-- [ ] Task 2.3: Stan biblioteki `useLibrary` w `src/features/library/`: przy starcie odczyt katalogu z 1.3 i skan, stany `idle | loading | ready | empty | error`; w buildzie e2e `LibrarySource` podmieniony na katalog z plikami testowymi (requires: 1.3, 2.1, 2.2) (spec: app.md) (tech: react-native, typescript)
+- [x] Task 2.3: Stan biblioteki `useLibrary` w `src/features/library/`: przy starcie odczyt katalogu z 1.3 i skan, stany `idle | loading | ready | empty | error`; w buildzie e2e `LibrarySource` podmieniony na katalog z plikami testowymi (requires: 1.3, 2.1, 2.2) (spec: app.md) (tech: react-native, typescript)
   - AC: pusty katalog daje stan `empty`, katalog z plikami stan `ready` z posortowaną listą
   - AC: zmiana katalogu zastępuje listę, nie dokleja do niej
   - AC: po utracie dostępu do katalogu użytkownik widzi prośbę o ponowny wybór
-- [ ] Test: 2.3 — testy hooka z fałszywym `LibrarySource`: wszystkie stany, odczyt zapamiętanego katalogu, zamiana listy
+- [x] Test: 2.3 — testy hooka z fałszywym `LibrarySource`: wszystkie stany, odczyt zapamiętanego katalogu, zamiana listy
 - [ ] Task 2.4: Ekran główny `LibraryScreen`: nagłówek z „Choose folder” (na iOS także „Import files”), `FlatList` z `TrackRow` (nazwa, czas trwania), stan pusty, ładowanie, błąd; testID na elementach; motyw systemowy jasny/ciemny; etykiety dostępności (requires: 2.3) (spec: app.md) (tech: react-native, typescript, accessibility)
   - AC: entry — użytkownik uruchamia aplikację → widzi listę utworów z zapamiętanego katalogu albo stan pusty z przyciskiem wyboru
   - AC: każdy wiersz pokazuje nazwę pliku bez rozszerzenia i czas trwania w formacie m:ss

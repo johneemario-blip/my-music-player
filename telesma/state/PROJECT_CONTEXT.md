@@ -86,7 +86,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 2.2 `iosLibrarySource` (`DocumentsLibrarySource`: listFolders, importFiles; Info.plist UIFileSharingEnabled + LSSupportsOpeningDocumentsInPlace)
-- Next task: 2.3 `useLibrary` (stan biblioteki)
+- Last completed task: 2.3 `useLibrary` (stany idle|loading|ready|empty|error, czasy trwania dociągane sondą `probeDuration` z expo-audio; `getLibrarySource()` w `src/services/files/index.ts`; build e2e = `EXPO_PUBLIC_E2E=1` → `e2eLibrarySource` z folderami „Fixtures”/„Empty”)
+- Next task: 2.4 `LibraryScreen`
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

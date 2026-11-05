@@ -14,20 +14,20 @@ module.exports = {
       type: 'ios.app',
       binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/MyMusicPlayer.app',
       build:
-        'xcodebuild -workspace ios/MyMusicPlayer.xcworkspace -scheme MyMusicPlayer -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -quiet',
+        'EXPO_PUBLIC_E2E=1 xcodebuild -workspace ios/MyMusicPlayer.xcworkspace -scheme MyMusicPlayer -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -quiet',
     },
     'ios.release': {
       type: 'ios.app',
       binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/MyMusicPlayer.app',
       build:
-        'xcodebuild -workspace ios/MyMusicPlayer.xcworkspace -scheme MyMusicPlayer -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet',
+        'EXPO_PUBLIC_E2E=1 xcodebuild -workspace ios/MyMusicPlayer.xcworkspace -scheme MyMusicPlayer -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet',
     },
     'android.debug': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
       testBinaryPath: 'android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk',
       build:
-        'cd android && ./gradlew :app:assembleDebug :app:assembleAndroidTest -DtestBuildType=debug -PreactNativeArchitectures=arm64-v8a',
+        'cd android && EXPO_PUBLIC_E2E=1 ./gradlew :app:assembleDebug :app:assembleAndroidTest -DtestBuildType=debug -PreactNativeArchitectures=arm64-v8a',
       reversePorts: [8081],
     },
     'android.release': {
@@ -36,7 +36,7 @@ module.exports = {
       testBinaryPath:
         'android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk',
       build:
-        'cd android && ./gradlew :app:assembleRelease :app:assembleAndroidTest -DtestBuildType=release -PreactNativeArchitectures=arm64-v8a -Pandroid.enableMinifyInReleaseBuilds=false',
+        'cd android && EXPO_PUBLIC_E2E=1 ./gradlew :app:assembleRelease :app:assembleAndroidTest -DtestBuildType=release -PreactNativeArchitectures=arm64-v8a -Pandroid.enableMinifyInReleaseBuilds=false',
     },
   },
   devices: {
