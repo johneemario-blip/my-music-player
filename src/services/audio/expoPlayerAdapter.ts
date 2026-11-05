@@ -13,6 +13,7 @@ import {
 } from './PlayerAdapter';
 
 const statusUpdateIntervalMs = 250;
+const maxStartRetries = 3;
 
 export function toPlayerStatus(status: AudioStatus): PlayerStatus {
   return {
@@ -47,11 +48,36 @@ export function createExpoPlayerAdapter(): PlayerAdapter {
   let player: AudioPlayer | null = null;
   const listeners = new Set<StatusListener>();
   const emit = (status: PlayerStatus) => listeners.forEach((listener) => listener(status));
+  // iOS: a track's end-of-item pause can land after we already started the next track, which
+  // then sits paused at 0:00. Until the player reports playing, a loaded-but-paused status
+  // means our play() was swallowed, so it is repeated a few times.
+  let startRetriesLeft = 0;
+
+  const retrySwallowedStart = (current: AudioPlayer, status: PlayerStatus) => {
+    if (startRetriesLeft === 0) return;
+    if (status.isPlaying || status.error !== null) {
+      startRetriesLeft = 0;
+      return;
+    }
+    if (status.isLoaded && !status.didJustFinish) {
+      startRetriesLeft -= 1;
+      current.play();
+    }
+  };
 
   const ensurePlayer = (): AudioPlayer => {
     if (player !== null) return player;
-    const created = createAudioPlayer(null, { updateInterval: statusUpdateIntervalMs });
-    created.addListener('playbackStatusUpdate', (status) => emit(toPlayerStatus(status)));
+    // Without keepAudioSessionActive iOS deactivates the session when a track ends — racing with
+    // loading the next track.
+    const created = createAudioPlayer(null, {
+      updateInterval: statusUpdateIntervalMs,
+      keepAudioSessionActive: true,
+    });
+    created.addListener('playbackStatusUpdate', (native) => {
+      const status = toPlayerStatus(native);
+      retrySwallowedStart(created, status);
+      emit(status);
+    });
     player = created;
     return created;
   };
@@ -91,12 +117,15 @@ export function createExpoPlayerAdapter(): PlayerAdapter {
       return player === null ? idleStatus : toPlayerStatus(player.currentStatus);
     },
     play() {
+      startRetriesLeft = maxStartRetries;
       guarded((current) => current.play());
     },
     pause() {
+      startRetriesLeft = 0;
       guarded((current) => current.pause());
     },
     async stop() {
+      startRetriesLeft = 0;
       const current = ensurePlayer();
       current.pause();
       await current.seekTo(0);

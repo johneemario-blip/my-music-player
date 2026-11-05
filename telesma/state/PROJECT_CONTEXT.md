@@ -79,6 +79,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 | Plik testowy audio na granicy pełnej sekundy daje różne m:ss na iOS i Androidzie (AAC priming, obcinanie w dół) | Fixtures e2e o długości N,5 s (ffmpeg `sine` z `duration=N.5`) → guard: none, bo dotyczy tylko nowych plików testowych |
 | Test ochrony przed nieaktualnymi danymi jest zielony bez ochrony, gdy stary i nowy stan nie mają wspólnych id | Scenariusz z nakładającymi się danymi (te same id), potem mutacja strażnika |
 | Status odtwarzacza (co 250 ms) przerenderowuje wszystko pod `HomeScreen` — `FlatList` ustawia timery 50 ms, Detox na iOS uznaje aplikację za zajętą | Komponenty poza paskiem odtwarzacza w `memo`, hooki zwracają obiekty z `useMemo`; nowy stan odtwarzania trzymać w `PlayerBar`/`usePlayer` → guard: e2e `player.e2e.ts` (test „plays the tapped track” pada, gdy lista znów się przerenderowuje) |
+| iOS: po końcu utworu `play()` następnego bywa połykane (pauza „na koniec utworu” AVPlayera przychodzi po naszym replace+play) — utwór stoi na 0:00 z przyciskiem „Pause” | Nie wołać `play()` „na ślepo”: adapter ponawia start, dopóki status nie potwierdzi grania (`retrySwallowedStart`), odtwarzacz z `keepAudioSessionActive: true` → guard: testy „swallowed start” w `expoPlayerAdapter.test.ts` + e2e „stops after the last one” (stres 10×) |
 | Detox Android: `getAttributes().frame` w px, `tap({x,y})` w dp; `adjustSliderToPosition` nie wywołuje slidingStart/Complete | Gesty ze znormalizowanymi współrzędnymi (`swipe(..., normalizedStartingPointX)`) zamiast punktów z `frame` → helper `touchSliderAt` w `e2e/player.e2e.ts` |
 
 ## Component dependencies
@@ -91,7 +92,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 5.1 Now Playing (ekran blokady: tytuł + play/pauza; bez przycisków skoku — DECISIONS.md 2026-11-05 15:47)
-- Next task: 5.2 E2E regresja z sesją medialną
+- Last completed task: 5.2 E2E regresja z sesją medialną (iOS: ponawianie startu następnego utworu w adapterze)
+- Next task: 5.3 ⛔ test ręczny na telefonach (właściciel); autonomicznie dalej 6.1 Tożsamość aplikacji
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

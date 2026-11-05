@@ -84,6 +84,10 @@ describe('createExpoPlayerAdapter', () => {
     adapter.load('file:///music/b.wav');
 
     expect(createAudioPlayer).toHaveBeenCalledTimes(1);
+    expect(createAudioPlayer).toHaveBeenCalledWith(
+      null,
+      expect.objectContaining({ keepAudioSessionActive: true }),
+    );
     expect(mockPlayer.replace).toHaveBeenNthCalledWith(1, { uri: 'file:///music/a.mp3' });
     expect(mockPlayer.replace).toHaveBeenNthCalledWith(2, { uri: 'file:///music/b.wav' });
   });
@@ -133,6 +137,61 @@ describe('createExpoPlayerAdapter', () => {
 
     expect(mockPlayer.pause).toHaveBeenCalled();
     expect(mockPlayer.seekTo).toHaveBeenCalledWith(0);
+  });
+
+  describe('swallowed start (iOS end-of-track pause racing the next track)', () => {
+    function startedAdapter() {
+      const adapter = createExpoPlayerAdapter();
+      adapter.load('file:///music/next.mp3');
+      adapter.play();
+      mockPlayer.play.mockClear();
+      return adapter;
+    }
+
+    it('repeats play() when the loaded track reports paused after play()', () => {
+      startedAdapter();
+
+      mockPlayer.listener?.(nativeStatus({ isLoaded: true, playing: false }));
+
+      expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+    });
+
+    it('stops repeating once the player reports playing', () => {
+      startedAdapter();
+
+      mockPlayer.listener?.(nativeStatus({ playing: true }));
+      mockPlayer.listener?.(nativeStatus({ playing: false }));
+
+      expect(mockPlayer.play).not.toHaveBeenCalled();
+    });
+
+    it('gives up after a few attempts', () => {
+      startedAdapter();
+
+      for (let update = 0; update < 6; update += 1) {
+        mockPlayer.listener?.(nativeStatus({ playing: false }));
+      }
+
+      expect(mockPlayer.play).toHaveBeenCalledTimes(3);
+    });
+
+    it('does not fight a pause the user asked for', () => {
+      const adapter = startedAdapter();
+
+      adapter.pause();
+      mockPlayer.listener?.(nativeStatus({ playing: false }));
+
+      expect(mockPlayer.play).not.toHaveBeenCalled();
+    });
+
+    it('waits while the track is still loading and ignores the end of the previous one', () => {
+      startedAdapter();
+
+      mockPlayer.listener?.(nativeStatus({ isLoaded: false, playing: false }));
+      mockPlayer.listener?.(nativeStatus({ playing: false, didJustFinish: true }));
+
+      expect(mockPlayer.play).not.toHaveBeenCalled();
+    });
   });
 
   it('shows the track title on the lock screen with play/pause only', () => {
