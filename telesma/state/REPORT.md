@@ -56,7 +56,7 @@ forever and grows in the prompt of every session.
 | 2.2 `LibrarySource` iOS (Documents + import) | ✅ | 56/56 unit (9 nowych), mutacja filtra importu → czerwony | 1 | 7009f79 | 2026-11-05 |
 | 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | 979f53a | 2026-11-05 |
 | 2.4 `LibraryScreen` (lista, stany, wybór folderu, import) | ✅ | 80/80 unit (13 nowych), mutacja widoczności „Import files” → czerwony | 2 | 8d24740 | 2026-11-05 |
-| 2.5 E2E biblioteki (wybór, pusty folder, restart) | ✅ | e2e iOS 5/5, Android 5/5 | 2 | (ten commit) | 2026-11-05 |
+| 2.5 E2E biblioteki (wybór, pusty folder, restart) | ✅ | e2e iOS 5/5, Android 5/5 | 2 | 14964b2 | 2026-11-05 |
 
 ## Change history
 

@@ -50,6 +50,7 @@ describe('Library', () => {
     await chooseFolder('Fixtures');
 
     await expectFixtureList();
+    await expect(element(by.id(testIds.trackList))).toBeVisible();
   });
 
   it('restores the list after restarting the app without choosing again', async () => {
