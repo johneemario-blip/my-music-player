@@ -1,0 +1,2 @@
+Aplikacja jest odtwarzaczem plików audio w popularnych formatach jak MP3, WAV oraz inne. Ma być to prosty odtwarzacz muzyki, w którym możesz wybrać katalog z utworami, które zostaną wyświetlone na liście. Odtwarzacz ma standardowe akcje jak play, stop, pauza, jest suwak postępu.
+Aplikacja działa na Android i iOS

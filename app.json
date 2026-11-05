@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "My Music Player",
+    "slug": "my-music-player",
+    "scheme": "mymusicplayer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.mymusicplayer.app",
+      "deploymentTarget": "16.4"
+    },
+    "android": {
+      "package": "com.mymusicplayer.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": { "minSdkVersion": 29 },
+          "ios": { "deploymentTarget": "16.4" }
+        }
+      ]
+    ]
+  }
+}
