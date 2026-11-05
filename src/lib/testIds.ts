@@ -1,4 +1,14 @@
 // testID convention: '<screen-or-feature>.<element>' in kebab-case, shared by RNTL and Detox.
 export const testIds = {
   libraryScreen: 'library.screen',
+  chooseFolder: 'library.choose-folder',
+  importFiles: 'library.import-files',
+  trackList: 'library.track-list',
+  trackRow: (index: number) => `library.track-row.${index}`,
+  libraryStatus: 'library.status',
+  libraryLoading: 'library.loading',
+  retry: 'library.retry',
+  folderPicker: 'folder-picker.modal',
+  folderOption: (label: string) => `folder-picker.option.${label === '' ? 'root' : label}`,
+  folderPickerCancel: 'folder-picker.cancel',
 } as const;

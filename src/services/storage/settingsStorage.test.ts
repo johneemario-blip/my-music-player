@@ -28,17 +28,23 @@ describe('settingsStorage', () => {
   });
 
   it('replaces the previous directory with the new one', async () => {
-    await saveSelectedDirectory({ kind: 'documents', uri: 'file:///Documents/Old/' });
-    await saveSelectedDirectory({ kind: 'documents', uri: 'file:///Documents/New/' });
+    await saveSelectedDirectory({ kind: 'documents', uri: 'Old' });
+    await saveSelectedDirectory({ kind: 'documents', uri: 'New' });
 
     await expect(loadSelectedDirectory()).resolves.toEqual({
       kind: 'documents',
-      uri: 'file:///Documents/New/',
+      uri: 'New',
     });
   });
 
+  it('keeps the whole iOS app folder, stored as an empty relative path', async () => {
+    await saveSelectedDirectory({ kind: 'documents', uri: '' });
+
+    await expect(loadSelectedDirectory()).resolves.toEqual({ kind: 'documents', uri: '' });
+  });
+
   it('returns null after clearing', async () => {
-    await saveSelectedDirectory({ kind: 'documents', uri: 'file:///Documents/' });
+    await saveSelectedDirectory({ kind: 'documents', uri: 'Rock' });
     await clearSelectedDirectory();
 
     await expect(loadSelectedDirectory()).resolves.toBeNull();
@@ -50,7 +56,7 @@ describe('settingsStorage', () => {
     ['null', 'null'],
     ['unknown kind', '{"kind":"dropbox","uri":"x"}'],
     ['missing uri', '{"kind":"saf"}'],
-    ['empty uri', '{"kind":"documents","uri":""}'],
+    ['empty SAF uri', '{"kind":"saf","uri":""}'],
     ['non-string uri', '{"kind":"saf","uri":42}'],
   ])('returns null for a corrupted entry: %s', async (_label, raw) => {
     await AsyncStorage.setItem(selectedDirectoryKey, raw);

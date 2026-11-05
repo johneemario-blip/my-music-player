@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 2)
-- **Progress**: 7/23 tasks completed (faza 1 ✅, faza 2: 2.1–2.3)
+- **Progress**: 8/23 tasks completed (faza 1 ✅, faza 2: 2.1–2.4)
 
 ## Test status
 
@@ -36,11 +36,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 69 (67 unit + 2 e2e) |
-| Pass | 69 |
+| Total tests | 82 (80 unit + 2 e2e) |
+| Pass | 82 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 2.3, `npm test`) |
+| Last run | 2026-11-05 (task 2.4, `npm test`) |
 
 ## Task history
 
@@ -52,7 +52,8 @@ forever and grows in the prompt of every session.
 | 1.4 Konfiguracja Detox + e2e dymny | ✅ | e2e iOS 1/1 (iPhone 16), Android 1/1 (AVD MyMusicPlayer_E2E); unit 37/37 | 3 + BLOCKED (dysk, R8) | 7649a5a | 2026-11-05 |
 | 2.1 `LibrarySource` + Android SAF (`src/services/files/`) | ✅ | 47/47 unit (10 nowych), mutacja pomijania ukrytych → czerwony | 1 | a48c69b | 2026-11-05 |
 | 2.2 `LibrarySource` iOS (Documents + import) | ✅ | 56/56 unit (9 nowych), mutacja filtra importu → czerwony | 1 | 7009f79 | 2026-11-05 |
-| 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | (ten commit) | 2026-11-05 |
+| 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | 979f53a | 2026-11-05 |
+| 2.4 `LibraryScreen` (lista, stany, wybór folderu, import) | ✅ | 80/80 unit (13 nowych), mutacja widoczności „Import files” → czerwony | 2 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -110,3 +111,4 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 1.4: R8 w buildzie release wycina klasy, których używa Detox (`androidx.tracing.Trace`, `kotlin.coroutines.intrinsics.IntrinsicsKt`, `kotlin.ResultKt`) — 3 próby reguł keep, BLOCKED: wybór strategii (BLOCKED.md).
 - [2026-11-05] Task 2.3: `expo install expo-audio` dodał plugin z uprawnieniem do mikrofonu (NSMicrophoneUsageDescription, RECORD_AUDIO) — wyłączone `microphonePermission: false`, `recordAudioAndroid: false` (decyzja A2: tylko odczyt plików).
 - [2026-11-05] Task 2.3: test „stare czasy trwania” był pierwotnie bezużyteczny (różne id utworów w obu folderach → mutacja strażnika nie czerwieniła) — przepisany na nakładające się foldery (Rock → Rock/Favourites).
+- [2026-11-05] Task 2.4: test wejścia (`app/index.tsx`) wykrył, że `settingsStorage` (1.3) odrzucał pusty `uri`, a od 2.2 `documents` + `''` = cały folder aplikacji iOS — wybór „All music” nie przetrwałby restartu. Walidacja: pusty `uri` dozwolony tylko dla `documents`; przypadek testu „empty uri” zmieniony na „empty SAF uri” (źródło: Key decisions 2026-11-05, ścieżka względna iOS).

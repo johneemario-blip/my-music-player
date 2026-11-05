@@ -43,11 +43,11 @@
   - AC: zmiana katalogu zastępuje listę, nie dokleja do niej
   - AC: po utracie dostępu do katalogu użytkownik widzi prośbę o ponowny wybór
 - [x] Test: 2.3 — testy hooka z fałszywym `LibrarySource`: wszystkie stany, odczyt zapamiętanego katalogu, zamiana listy
-- [ ] Task 2.4: Ekran główny `LibraryScreen`: nagłówek z „Choose folder” (na iOS także „Import files”), `FlatList` z `TrackRow` (nazwa, czas trwania), stan pusty, ładowanie, błąd; testID na elementach; motyw systemowy jasny/ciemny; etykiety dostępności (requires: 2.3) (spec: app.md) (tech: react-native, typescript, accessibility)
+- [x] Task 2.4: Ekran główny `LibraryScreen`: nagłówek z „Choose folder” (na iOS także „Import files”), `FlatList` z `TrackRow` (nazwa, czas trwania), stan pusty, ładowanie, błąd; testID na elementach; motyw systemowy jasny/ciemny; etykiety dostępności (requires: 2.3) (spec: app.md) (tech: react-native, typescript, accessibility)
   - AC: entry — użytkownik uruchamia aplikację → widzi listę utworów z zapamiętanego katalogu albo stan pusty z przyciskiem wyboru
   - AC: każdy wiersz pokazuje nazwę pliku bez rozszerzenia i czas trwania w formacie m:ss
   - AC: wszystkie teksty interfejsu po angielsku, pochodzą z `src/lib/strings.ts`
-- [ ] Test: 2.4 — testy RNTL: render listy z fixture, stan pusty, stan błędu, przycisk importu tylko na iOS
+- [x] Test: 2.4 — testy RNTL: render listy z fixture, stan pusty, stan błędu, przycisk importu tylko na iOS
 - [ ] Task 2.5: E2E test — wybór katalogu z plikami testowymi → lista posortowana z czasami trwania; pusty katalog → stan pusty; restart aplikacji → lista przywrócona bez ponownego wyboru (iOS + Android) (requires: 2.1, 2.2, 2.3, 2.4) (spec: app.md) (tech: detox, typescript)
 
 ### Phase 3: Odtwarzacz — play, pauza, stop, suwak, kolejka

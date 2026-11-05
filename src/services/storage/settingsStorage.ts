@@ -12,8 +12,10 @@ export const selectedDirectoryKey = 'settings.selectedDirectory.v1';
 function isSavedDirectory(value: unknown): value is SavedDirectory {
   if (typeof value !== 'object' || value === null) return false;
   const candidate = value as Record<string, unknown>;
-  const hasValidKind = candidate.kind === 'saf' || candidate.kind === 'documents';
-  return hasValidKind && typeof candidate.uri === 'string' && candidate.uri.length > 0;
+  if (typeof candidate.uri !== 'string') return false;
+  // A `documents` ref holds a path relative to the app folder; '' means the whole app folder.
+  if (candidate.kind === 'documents') return true;
+  return candidate.kind === 'saf' && candidate.uri.length > 0;
 }
 
 function parseSavedDirectory(raw: string): SavedDirectory | null {
