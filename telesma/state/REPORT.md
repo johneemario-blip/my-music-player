@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress (faza 5)
-- **Progress**: 17/23 tasks completed (fazy 1–4 ✅, faza 5: 5.1–5.2, 5.3 ⛔ test ręczny)
+- **Status**: In progress (faza 6; 5.3 czeka na test ręczny właściciela)
+- **Progress**: 19/23 tasks completed (fazy 1–4 ✅, faza 5: 5.3 ⛔, faza 6: 6.1)
 
 ## Test status
 
@@ -42,11 +42,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 167 (143 unit + 12 e2e × 2 platformy) |
-| Pass | 167 |
+| Total tests | 173 (149 unit + 12 e2e × 2 platformy) |
+| Pass | 173 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 5.2: pełne e2e + 10× stres iOS) |
+| Last run | 2026-11-05 (task 6.1: unit + pełne e2e) |
 
 ## Task history
 
@@ -68,7 +68,8 @@ forever and grows in the prompt of every session.
 | 4.1 Odtwarzanie w tle (tryb audio, sesja Now Playing, synchronizacja zewnętrznej pauzy, AppState) | ✅ | 135/135 unit (7 nowych), mutacje `shouldPlayInBackground` i `awaitingNative` → czerwone | 1 | 435d2ce | 2026-11-05 |
 | 4.2 E2E odtwarzania w tle (3 s na ekranie głównym, pozycja +3 s, „Pause”) | ✅ | e2e iOS 11/11, Android 11/11; mutacja `shouldPlayInBackground` → test tła czerwony (iOS) | 1 | ece754e | 2026-11-05 |
 | 5.1 Now Playing + play/pauza z ekranu blokady (następny/poprzedni → BACKLOG, decyzja właściciela) | ✅ | 138/138 unit (3 nowe) | 1 + BLOCKED (wybór a/b/c) | 869d745 | 2026-11-05 |
-| 5.2 E2E regresja z sesją medialną + naprawa „następny utwór czasem nie startuje” (iOS) | ✅ | unit 143/143 (5 nowych), e2e iOS 12/12 i Android 12/12, stres iOS 10/10 | 3 | (ten commit) | 2026-11-05 |
+| 5.2 E2E regresja z sesją medialną + naprawa „następny utwór czasem nie startuje” (iOS) | ✅ | unit 143/143 (5 nowych), e2e iOS 12/12 i Android 12/12, stres iOS 10/10 | 3 | f8030ec | 2026-11-05 |
+| 6.1 Tożsamość aplikacji (ikona, splash jasny/ciemny, test konfiguracji) | ✅ | unit 149/149 (6 nowych), `expo config` bez ostrzeżeń, expo-doctor 20/20, e2e iOS 12/12 i Android 12/12 | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -137,3 +138,4 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 4.2: e2e grania w tle wymaga dłuższego utworu — dodany folder e2e „Long” (`long-tone.mp3`, 15,5 s), „Fixtures” bez zmian; jedyne celowe czekanie w e2e (`stayInBackground`), bo aplikacja jest wtedy w tle.
 - [2026-11-05] Task 5.1: expo-audio — next/previous z ekranu blokady tylko dla `AudioPlaylist`, dla `AudioPlayer` pusta implementacja (MediaController.swift); BLOCKED: wybór a/b/c (BLOCKED.md).
 - [2026-11-05] Task 5.2: błąd (wprowadzony w 3.1–3.2, wykryty przez test e2e, 2. wystąpienie — pierwsze w 3.4) — na iOS następny utwór czasem zostawał w pauzie na 0:00. Przyczyna: pauza AVPlayera „na koniec utworu” (actionAtItemEnd .pause) przychodzi czasem po naszym replace+play kolejnego utworu; dodatkowo expo-audio dezaktywował sesję po końcu utworu. Naprawa: `keepAudioSessionActive: true` + adapter ponawia `play()` (max 3) dopóki status nie potwierdzi grania; pauza/stop anulują. Stres 10/10 (wcześniej ~1/5 i 1/8 porażek).
+- [2026-11-05] Task 6.1: expo-doctor — `@expo/vector-icons` (od 3.3) wymaga bezpośredniej zależności `expo-font`; dodana (`npx expo install expo-font`).

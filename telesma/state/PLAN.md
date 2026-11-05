@@ -88,8 +88,8 @@
 
 ### Phase 6: Wykończenie
 
-- [ ] Task 6.1: Tożsamość aplikacji: nazwa „My Music Player”, ikona, splash, identyfikatory pakietów, orientacja portrait, motyw systemowy w app.json (requires: 1.1) (tech: react-native, typescript)
-- [ ] Test: 6.1 — konfiguracja app.json przechodzi `npx expo config` bez ostrzeżeń, test dymny z 1.1 nadal zielony
+- [x] Task 6.1: Tożsamość aplikacji: nazwa „My Music Player”, ikona, splash, identyfikatory pakietów, orientacja portrait, motyw systemowy w app.json (requires: 1.1) (tech: react-native, typescript)
+- [x] Test: 6.1 — konfiguracja app.json przechodzi `npx expo config` bez ostrzeżeń, test dymny z 1.1 nadal zielony
 - [ ] Task 6.2: README (EN): uruchomienie na emulatorze/symulatorze, testy jednostkowe i e2e, jak wrzucić muzykę na iOS (Pliki/Finder/AirDrop) i wybrać katalog na Androidzie, znane ograniczenia (requires: 2.2, 5.1) (spec: app.md)
 - [ ] Task 6.3: E2E test — pełny przebieg wszystkich scenariuszy e2e (fazy 1-5) na iOS i Androidzie z finalną konfiguracją aplikacji (requires: 6.1, 6.2) (tech: detox, typescript)
 

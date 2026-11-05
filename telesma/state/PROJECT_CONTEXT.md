@@ -92,7 +92,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 5.2 E2E regresja z sesją medialną (iOS: ponawianie startu następnego utworu w adapterze)
-- Next task: 5.3 ⛔ test ręczny na telefonach (właściciel); autonomicznie dalej 6.1 Tożsamość aplikacji
+- Last completed task: 6.1 tożsamość aplikacji (ikona nuty generowana skryptem PIL, splash z wariantem ciemnym, `__tests__/appConfig.test.ts`)
+- Next task: 6.2 README (EN); 5.3 ⛔ czeka na test ręczny właściciela
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
