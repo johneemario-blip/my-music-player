@@ -49,7 +49,7 @@ forever and grows in the prompt of every session.
 | 1.1 Architecture skeleton and conventions | ✅ | 1/1, tsc 0, eslint 0, prettier ok, expo-doctor 20/20 | 1 | 9c72d62 | 2026-11-05 |
 | 1.2 Model domeny i czysta logika (`src/lib/track.ts`) | ✅ | 26/26 (25 nowych), mutacja reguły ogg → czerwony | 1 | 7ebe33c | 2026-11-05 |
 | 1.3 Pamięć ustawień (`settingsStorage`) | ✅ | 37/37 (11 nowych), mutacja walidacji `kind` → czerwony | 1 | 4856d83 | 2026-11-05 |
-| 1.4 Konfiguracja Detox + e2e dymny | ✅ | e2e iOS 1/1 (iPhone 16), Android 1/1 (AVD MyMusicPlayer_E2E); unit 37/37 | 3 + BLOCKED (dysk, R8) | (ten commit) | 2026-11-05 |
+| 1.4 Konfiguracja Detox + e2e dymny | ✅ | e2e iOS 1/1 (iPhone 16), Android 1/1 (AVD MyMusicPlayer_E2E); unit 37/37 | 3 + BLOCKED (dysk, R8) | 7649a5a | 2026-11-05 |
 
 ## Change history
 
