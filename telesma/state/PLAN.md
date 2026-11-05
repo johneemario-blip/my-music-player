@@ -71,10 +71,10 @@
 
 ### Phase 4: Odtwarzanie w tle
 
-- [ ] Task 4.1: Odtwarzanie w tle: `UIBackgroundModes: audio` (iOS) i uprawnienia usługi pierwszoplanowej (Android) w app.json, `setAudioModeAsync` z odtwarzaniem w tle i trybem przerwań, ponowna synchronizacja stanu przez `AppState` po powrocie na pierwszy plan (requires: 3.1, 3.2) (spec: app.md) (tech: react-native, typescript)
+- [x] Task 4.1: Odtwarzanie w tle: `UIBackgroundModes: audio` (iOS) i uprawnienia usługi pierwszoplanowej (Android) w app.json, `setAudioModeAsync` z odtwarzaniem w tle i trybem przerwań, ponowna synchronizacja stanu przez `AppState` po powrocie na pierwszy plan (requires: 3.1, 3.2) (spec: app.md) (tech: react-native, typescript)
   - AC: entry — użytkownik blokuje ekran lub przełącza aplikację podczas odtwarzania → muzyka gra dalej
   - AC: po powrocie do aplikacji suwak i stan przycisków odpowiadają rzeczywistej pozycji
-- [ ] Test: 4.1 — testy jednostkowe: konfiguracja trybu audio z oczekiwanymi flagami, resynchronizacja po zdarzeniu `AppState`
+- [x] Test: 4.1 — testy jednostkowe: konfiguracja trybu audio z oczekiwanymi flagami, resynchronizacja po zdarzeniu `AppState`
 - [ ] Task 4.2: E2E test — start odtwarzania → aplikacja w tle na 3 s → powrót: pozycja przesunięta o co najmniej 3 s i stan „playing” (iOS + Android) (requires: 4.1) (spec: app.md) (tech: detox, typescript)
 
 ### Phase 5: Sterowanie z ekranu blokady

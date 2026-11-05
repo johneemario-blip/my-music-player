@@ -15,6 +15,11 @@ export interface PlayerState {
   loadRequest: number;
   /** Name of the last track that could not be played, for a message to the user. */
   failedTrackName: string | null;
+  /**
+   * True from our own transport command until the native player reports the matching state.
+   * While false, a mismatch means someone else (a call, the lock screen) paused or resumed.
+   */
+  awaitingNative: boolean;
 }
 
 export type PlayerAction =
@@ -38,6 +43,7 @@ export const initialPlayerState: PlayerState = {
   durationMs: 0,
   loadRequest: 0,
   failedTrackName: null,
+  awaitingNative: false,
 };
 
 function startTrack(state: PlayerState, index: number): PlayerState {
@@ -50,11 +56,12 @@ function startTrack(state: PlayerState, index: number): PlayerState {
     positionMs: 0,
     durationMs: track.durationMs ?? 0,
     loadRequest: state.loadRequest + 1,
+    awaitingNative: true,
   };
 }
 
 function endOfQueue(state: PlayerState): PlayerState {
-  return { ...state, playback: 'stopped', positionMs: 0 };
+  return { ...state, playback: 'stopped', positionMs: 0, awaitingNative: true };
 }
 
 function advance(state: PlayerState, strategy: QueueStrategy): PlayerState {
@@ -80,8 +87,8 @@ function replaceQueue(state: PlayerState, tracks: Track[]): PlayerState {
 
 function togglePlay(state: PlayerState): PlayerState {
   if (state.currentIndex === null) return state;
-  if (state.playback === 'playing') return { ...state, playback: 'paused' };
-  return { ...state, playback: 'playing' };
+  const playback = state.playback === 'playing' ? 'paused' : 'playing';
+  return { ...state, playback, awaitingNative: true };
 }
 
 function applyStatus(state: PlayerState, status: PlayerStatus, strategy: QueueStrategy) {
@@ -92,11 +99,21 @@ function applyStatus(state: PlayerState, status: PlayerStatus, strategy: QueueSt
   }
   if (status.didJustFinish) return advance(state, strategy);
   if (!status.isLoaded) return state;
-  return {
+  const updated = {
     ...state,
     positionMs: status.positionMs,
     durationMs: status.durationMs > 0 ? status.durationMs : state.durationMs,
   };
+  return syncPlayback(updated, status.isPlaying);
+}
+
+function syncPlayback(state: PlayerState, nativePlaying: boolean): PlayerState {
+  const wantsPlaying = state.playback === 'playing';
+  if (nativePlaying === wantsPlaying) {
+    return state.awaitingNative ? { ...state, awaitingNative: false } : state;
+  }
+  if (state.awaitingNative) return state;
+  return { ...state, playback: nativePlaying ? 'playing' : 'paused' };
 }
 
 export function createPlayerReducer(strategy: QueueStrategy = sequentialQueue) {
@@ -111,7 +128,7 @@ export function createPlayerReducer(strategy: QueueStrategy = sequentialQueue) {
       case 'stop':
         return state.currentIndex === null
           ? state
-          : { ...state, playback: 'stopped', positionMs: 0 };
+          : { ...state, playback: 'stopped', positionMs: 0, awaitingNative: true };
       case 'next':
         return advance(state, strategy);
       case 'previous':

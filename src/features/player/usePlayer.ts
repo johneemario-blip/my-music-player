@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import { AppState } from 'react-native';
 
 import type { Track } from '@/lib/track';
-import type { PlayerAdapter } from '@/services/audio/PlayerAdapter';
+import type { PlayerAdapter, PlayerStatus } from '@/services/audio/PlayerAdapter';
 
 import { createPlayerReducer, initialPlayerState, type PlayerState } from './playerReducer';
 import { sequentialQueue, type QueueStrategy } from './queueStrategy';
@@ -49,6 +50,29 @@ function useAdapterSync(adapter: PlayerAdapter, state: PlayerState) {
   }, [adapter, loadRequest, playback, currentUri]);
 }
 
+function useNowPlaying(adapter: PlayerAdapter, title: string | null) {
+  const announced = useRef(false);
+  useEffect(() => {
+    if (title !== null) {
+      adapter.setNowPlaying({ title });
+      announced.current = true;
+    } else if (announced.current) {
+      adapter.setNowPlaying(null);
+      announced.current = false;
+    }
+  }, [adapter, title]);
+}
+
+/** Status events can be missed while the app is suspended; read the real state on return. */
+function useForegroundResync(adapter: PlayerAdapter, onStatus: (status: PlayerStatus) => void) {
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (appState) => {
+      if (appState === 'active') onStatus(adapter.getStatus());
+    });
+    return () => subscription.remove();
+  }, [adapter, onStatus]);
+}
+
 export function usePlayer(
   tracks: Track[],
   adapter: PlayerAdapter,
@@ -57,10 +81,19 @@ export function usePlayer(
   const reducer = useMemo(() => createPlayerReducer(strategy), [strategy]);
   const [state, dispatch] = useReducer(reducer, initialPlayerState);
 
+  const applyStatus = useCallback(
+    (status: PlayerStatus) => dispatch({ type: 'status', status }),
+    [],
+  );
+  const currentTitle =
+    state.currentIndex === null ? null : (state.queue[state.currentIndex]?.name ?? null);
+
   useEffect(() => dispatch({ type: 'setQueue', tracks }), [tracks]);
-  useEffect(() => adapter.onStatus((status) => dispatch({ type: 'status', status })), [adapter]);
+  useEffect(() => adapter.onStatus(applyStatus), [adapter, applyStatus]);
   useEffect(() => () => adapter.release(), [adapter]);
   useAdapterSync(adapter, state);
+  useNowPlaying(adapter, currentTitle);
+  useForegroundResync(adapter, applyStatus);
 
   const seek = useCallback(
     (positionMs: number) => {

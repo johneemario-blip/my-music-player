@@ -11,8 +11,19 @@ export interface PlayerStatus {
 
 export type StatusListener = (status: PlayerStatus) => void;
 
+export interface NowPlaying {
+  title: string;
+}
+
 export interface PlayerAdapter {
   load(uri: string): void;
+  /**
+   * Shows the track on the lock screen / media notification. On Android this also starts the
+   * media foreground service that keeps playback alive in the background; `null` ends it.
+   */
+  setNowPlaying(info: NowPlaying | null): void;
+  /** Current native status, for re-syncing after the app returns to the foreground. */
+  getStatus(): PlayerStatus;
   play(): void;
   pause(): void;
   /** Pauses and rewinds to the start. */

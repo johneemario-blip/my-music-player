@@ -138,6 +138,44 @@ describe('playerReducer', () => {
     expect(state).toMatchObject({ positionMs: 5000, durationMs: 180000 });
   });
 
+  it('does not flip to paused while the just-loaded track has not started yet', () => {
+    const state = run({ type: 'playTrack', index: 0 }, status({ isPlaying: false }));
+
+    expect(state.playback).toBe('playing');
+  });
+
+  it('follows a pause from outside the app (call, lock screen) once playback had started', () => {
+    const state = run(
+      { type: 'playTrack', index: 0 },
+      status({ isPlaying: true, positionMs: 1000 }),
+      status({ isPlaying: false, positionMs: 1200 }),
+    );
+
+    expect(state).toMatchObject({ playback: 'paused', positionMs: 1200 });
+  });
+
+  it('follows a resume from outside the app', () => {
+    const state = run(
+      { type: 'playTrack', index: 0 },
+      status({ isPlaying: true }),
+      status({ isPlaying: false }),
+      status({ isPlaying: true, positionMs: 1500 }),
+    );
+
+    expect(state.playback).toBe('playing');
+  });
+
+  it('keeps our own resume until the native player confirms it', () => {
+    const paused = run({ type: 'playTrack', index: 0 }, status({ isPlaying: true }), {
+      type: 'togglePlay',
+    });
+    const confirmedPause = reducer(paused, status({ isPlaying: false }));
+    const resumed = reducer(confirmedPause, { type: 'togglePlay' });
+
+    expect(reducer(resumed, status({ isPlaying: false })).playback).toBe('playing');
+    expect(reducer(paused, status({ isPlaying: true })).playback).toBe('paused');
+  });
+
   it('ignores status updates that are not loaded yet', () => {
     const state = run(
       { type: 'playTrack', index: 0 },

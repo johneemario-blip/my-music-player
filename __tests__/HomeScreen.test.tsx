@@ -20,6 +20,7 @@ const mockNativePlayer = {
   pause: jest.fn(),
   seekTo: jest.fn(async () => undefined),
   remove: jest.fn(),
+  setActiveForLockScreen: jest.fn(),
   addListener: jest.fn(() => ({ remove: jest.fn() })),
 };
 jest.mock('expo-audio', () => ({

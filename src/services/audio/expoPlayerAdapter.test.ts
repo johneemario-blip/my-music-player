@@ -15,6 +15,7 @@ const mockPlayer = {
   pause: jest.fn(),
   seekTo: jest.fn(async () => undefined),
   remove: jest.fn(),
+  setActiveForLockScreen: jest.fn(),
   listener: null as StatusCallback | null,
   addListener: jest.fn((_event: string, callback: StatusCallback) => {
     mockPlayer.listener = callback;
@@ -145,7 +146,7 @@ describe('createExpoPlayerAdapter', () => {
 });
 
 describe('configureAudioSession', () => {
-  it('plays despite the silent switch and pauses for interruptions', async () => {
+  it('plays in the background, despite the silent switch, and pauses for interruptions', async () => {
     await configureAudioSession();
 
     expect(setAudioModeAsync).toHaveBeenCalledWith(
@@ -153,6 +154,7 @@ describe('configureAudioSession', () => {
         playsInSilentMode: true,
         interruptionMode: 'doNotMix',
         allowsRecording: false,
+        shouldPlayInBackground: true,
       }),
     );
   });

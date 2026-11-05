@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react-native';
+import { AppState } from 'react-native';
 
 import type { Track } from '@/lib/track';
 import {
@@ -25,13 +26,16 @@ function fakeAdapter() {
     stop: jest.fn(async () => undefined),
     seekTo: jest.fn(async () => undefined),
     release: jest.fn(),
+    setNowPlaying: jest.fn(),
+    nativeStatus: { ...idleStatus },
+    getStatus: (): PlayerStatus => adapter.nativeStatus,
     onStatus: (listener: StatusListener) => {
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
     emit: (status: Partial<PlayerStatus>) =>
       listeners.forEach((listener) => listener({ ...idleStatus, isLoaded: true, ...status })),
-  } satisfies PlayerAdapter & { emit: unknown };
+  } satisfies PlayerAdapter & { emit: unknown; nativeStatus: PlayerStatus };
   return adapter;
 }
 
@@ -152,6 +156,52 @@ describe('usePlayer', () => {
 
     expect(adapter.pause).toHaveBeenCalled();
     expect(result.current.currentTrack).toBeNull();
+  });
+
+  it('shows the playing track on the lock screen and updates it on track change', async () => {
+    const { result, adapter } = await renderPlayer();
+
+    await act(async () => result.current.playTrack(0));
+    await act(async () => adapter.emit({ didJustFinish: true }));
+
+    expect(adapter.setNowPlaying).toHaveBeenNthCalledWith(1, { title: 'a' });
+    expect(adapter.setNowPlaying).toHaveBeenNthCalledWith(2, { title: 'b' });
+  });
+
+  it('ends the lock-screen session when the playing track leaves the list', async () => {
+    const adapter = fakeAdapter();
+    const { result, rerender } = await renderHook(
+      ({ list }: { list: Track[] }) => usePlayer(list, adapter),
+      { initialProps: { list: tracks } },
+    );
+    await act(async () => result.current.playTrack(0));
+
+    await act(async () => rerender({ list: [track('other')] }));
+
+    expect(adapter.setNowPlaying).toHaveBeenLastCalledWith(null);
+  });
+
+  it('re-reads the native position when the app returns to the foreground', async () => {
+    const appStateListeners: ((state: string) => void)[] = [];
+    jest.spyOn(AppState, 'addEventListener').mockImplementationOnce((_type, listener) => {
+      appStateListeners.push(listener as (state: string) => void);
+      return { remove: jest.fn() };
+    });
+    const { result, adapter } = await renderPlayer();
+    await act(async () => result.current.playTrack(0));
+    await act(async () => adapter.emit({ isPlaying: true, positionMs: 1000, durationMs: 3000 }));
+    adapter.nativeStatus = {
+      ...idleStatus,
+      isLoaded: true,
+      isPlaying: true,
+      positionMs: 2500,
+      durationMs: 3000,
+    };
+
+    await act(async () => appStateListeners.forEach((listener) => listener('active')));
+
+    expect(result.current.state.positionMs).toBe(2500);
+    expect(result.current.state.playback).toBe('playing');
   });
 
   it('releases the adapter on unmount', async () => {

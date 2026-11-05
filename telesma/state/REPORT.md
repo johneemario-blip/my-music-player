@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-11-05
-- **Status**: In progress (faza 3)
-- **Progress**: 13/23 tasks completed (fazy 1–3 ✅)
+- **Status**: In progress (faza 4)
+- **Progress**: 14/23 tasks completed (fazy 1–3 ✅, faza 4: 4.1)
 
 ## Test status
 
@@ -40,11 +40,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 148 (128 unit + 10 e2e × 2 platformy) |
-| Pass | 148 |
+| Total tests | 155 (135 unit + 10 e2e × 2 platformy) |
+| Pass | 155 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (regresja po fazie 3) |
+| Last run | 2026-11-05 (task 4.1, `npm test`) |
 
 ## Task history
 
@@ -63,6 +63,7 @@ forever and grows in the prompt of every session.
 | 3.2 Kolejka, reducer, `usePlayer`, wiersz → odtwarzanie | ✅ | 121/121 unit (32 nowe), mutacja końca kolejki → 4 czerwone, odpięcie wiersza → test wejścia czerwony | 1 | 5cff361 | 2026-11-05 |
 | 3.3 `PlayerBar` (suwak, czasy, przyciski, wyróżnienie) | ✅ | 128/128 unit (7 nowych), mutacja „nieaktywne bez utworu” → czerwony | 1 | af15e1c | 2026-11-05 |
 | 3.4 E2E odtwarzacza (play, pauza, stop, suwak, następny/poprzedni, auto-następny, koniec listy) | ✅ | e2e iOS 10/10 ×3 przebiegi, Android 10/10 | 3 | 75f43fa | 2026-11-05 |
+| 4.1 Odtwarzanie w tle (tryb audio, sesja Now Playing, synchronizacja zewnętrznej pauzy, AppState) | ✅ | 135/135 unit (7 nowych), mutacje `shouldPlayInBackground` i `awaitingNative` → czerwone | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 

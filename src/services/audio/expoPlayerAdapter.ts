@@ -29,14 +29,17 @@ function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-/** Plays despite the iOS silent switch; a phone call or another player's audio pauses us. */
+/**
+ * Plays despite the iOS silent switch and keeps playing with the screen locked or another app
+ * in front; a phone call or another player's audio pauses us.
+ */
 export async function configureAudioSession(): Promise<void> {
   await setAudioModeAsync({
     playsInSilentMode: true,
     interruptionMode: 'doNotMix',
     interruptionModeAndroid: 'doNotMix',
     allowsRecording: false,
-    shouldPlayInBackground: false,
+    shouldPlayInBackground: true,
   });
 }
 
@@ -65,6 +68,22 @@ export function createExpoPlayerAdapter(): PlayerAdapter {
     load(uri) {
       guarded((current) => current.replace({ uri }));
     },
+    setNowPlaying(info) {
+      if (info === null) {
+        player?.setActiveForLockScreen(false);
+        return;
+      }
+      guarded((current) =>
+        current.setActiveForLockScreen(
+          true,
+          { title: info.title },
+          { showSeekForward: false, showSeekBackward: false },
+        ),
+      );
+    },
+    getStatus() {
+      return player === null ? idleStatus : toPlayerStatus(player.currentStatus);
+    },
     play() {
       guarded((current) => current.play());
     },
@@ -85,6 +104,7 @@ export function createExpoPlayerAdapter(): PlayerAdapter {
     },
     release() {
       listeners.clear();
+      player?.setActiveForLockScreen(false);
       player?.remove();
       player = null;
     },
