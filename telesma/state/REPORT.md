@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 4)
-- **Progress**: 14/23 tasks completed (fazy 1–3 ✅, faza 4: 4.1)
+- **Progress**: 15/23 tasks completed (fazy 1–4 ✅)
 
 ## Test status
 
@@ -32,6 +32,8 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 4 (2026-11-05) — GREEN:** unit `npm test -- --ci` 135/0, e2e Detox iOS 11/0 i Android 11/0 (nowy: granie w tle); `tsc`, ESLint, Prettier czyste. Względem fazy 3: +7 unit, +1 e2e na platformę. Tag `telesma/phase-4`.
+
 **Regression after Phase 3 (2026-11-05) — GREEN:** unit `npm test -- --ci` 128/0 (11 plików), e2e Detox iOS 10/0 (3 kolejne przebiegi) i Android 10/0; `tsc`, ESLint, Prettier czyste. Względem fazy 2: +48 unit, +5 e2e na platformę. Tag `telesma/phase-3`.
 
 **Regression after Phase 2 (2026-11-05) — GREEN:** unit `npm test -- --ci` 80/0 (7 plików), e2e Detox iOS 5/0 i Android 5/0 (smoke + biblioteka); `tsc`, ESLint, Prettier czyste. Względem fazy 1: +43 unit, +4 e2e na platformę. Tag `telesma/phase-2`.
@@ -40,11 +42,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 155 (135 unit + 10 e2e × 2 platformy) |
-| Pass | 155 |
+| Total tests | 157 (135 unit + 11 e2e × 2 platformy) |
+| Pass | 157 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 4.1, `npm test`) |
+| Last run | 2026-11-05 (regresja po fazie 4) |
 
 ## Task history
 
@@ -63,7 +65,8 @@ forever and grows in the prompt of every session.
 | 3.2 Kolejka, reducer, `usePlayer`, wiersz → odtwarzanie | ✅ | 121/121 unit (32 nowe), mutacja końca kolejki → 4 czerwone, odpięcie wiersza → test wejścia czerwony | 1 | 5cff361 | 2026-11-05 |
 | 3.3 `PlayerBar` (suwak, czasy, przyciski, wyróżnienie) | ✅ | 128/128 unit (7 nowych), mutacja „nieaktywne bez utworu” → czerwony | 1 | af15e1c | 2026-11-05 |
 | 3.4 E2E odtwarzacza (play, pauza, stop, suwak, następny/poprzedni, auto-następny, koniec listy) | ✅ | e2e iOS 10/10 ×3 przebiegi, Android 10/10 | 3 | 75f43fa | 2026-11-05 |
-| 4.1 Odtwarzanie w tle (tryb audio, sesja Now Playing, synchronizacja zewnętrznej pauzy, AppState) | ✅ | 135/135 unit (7 nowych), mutacje `shouldPlayInBackground` i `awaitingNative` → czerwone | 1 | (ten commit) | 2026-11-05 |
+| 4.1 Odtwarzanie w tle (tryb audio, sesja Now Playing, synchronizacja zewnętrznej pauzy, AppState) | ✅ | 135/135 unit (7 nowych), mutacje `shouldPlayInBackground` i `awaitingNative` → czerwone | 1 | 435d2ce | 2026-11-05 |
+| 4.2 E2E odtwarzania w tle (3 s na ekranie głównym, pozycja +3 s, „Pause”) | ✅ | e2e iOS 11/11, Android 11/11; mutacja `shouldPlayInBackground` → test tła czerwony (iOS) | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -128,3 +131,5 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 3.4: iOS — lista utworów przerenderowywała się co 250 ms (pozycja odtwarzania w `HomeScreen`, `useLibrary` zwracał nowy obiekt), `FlatList` ustawiał timery 50 ms, Detox czekał na bezczynność, a w tym czasie wszystkie utwory się odgrywały. `useLibrary` zwraca obiekt z `useMemo`, `LibraryScreen` w `memo`.
 - [2026-11-05] Task 3.4: Android — `adjustSliderToPosition` nie wywołuje slidingStart/Complete; dotknięcie z `getAttributes().frame` chybiało (frame w px, tap w dp). Na Androidzie gest `swipe` ze znormalizowanym punktem startu, na iOS `tap` w punktach.
 - [2026-11-05] Task 3.4: jednorazowa porażka „stop po ostatnim utworze” na iOS w pełnym przebiegu (przed poprawką `memo`), nie powtórzyła się w 4 kolejnych przebiegach — obserwować.
+- [2026-11-05] Task 4.1: ostrzeżenia `tests/test-pinned-to-code` (usePlayer.test.ts, expoPlayerAdapter.test.ts) — testy rozszerzone o nowe zachowania 4.1 (tryb tła, `setNowPlaying`, resynchronizacja), żadna asercja nie osłabiona; zostają.
+- [2026-11-05] Task 4.2: e2e grania w tle wymaga dłuższego utworu — dodany folder e2e „Long” (`long-tone.mp3`, 15,5 s), „Fixtures” bez zmian; jedyne celowe czekanie w e2e (`stayInBackground`), bo aplikacja jest wtedy w tle.

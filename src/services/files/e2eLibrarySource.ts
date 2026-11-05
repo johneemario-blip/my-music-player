@@ -6,17 +6,20 @@ import { sortTracks, trackNameFromFileName, type Track } from '@/lib/track';
 import type { DirectoryRef, FolderListingSource, FolderOption } from './LibrarySource';
 
 // Detox cannot drive the system folder pickers, so e2e builds (EXPO_PUBLIC_E2E=1) use bundled
-// short audio fixtures exposed as two in-app folders.
+// audio fixtures exposed as in-app folders: short tracks for queue tests, one long track for
+// background playback.
 const fixtureModules: Record<string, number> = {
   'alpha-tone.mp3': require('../../../e2e/fixtures/audio/alpha-tone.mp3'),
   'beta-tone.wav': require('../../../e2e/fixtures/audio/beta-tone.wav'),
   'gamma-tone.m4a': require('../../../e2e/fixtures/audio/gamma-tone.m4a'),
+  'long-tone.mp3': require('../../../e2e/fixtures/audio/long-tone.mp3'),
 };
 
-export const e2eFolders = { fixtures: 'Fixtures', empty: 'Empty' } as const;
+export const e2eFolders = { fixtures: 'Fixtures', long: 'Long', empty: 'Empty' } as const;
 
 const folderContents: Record<string, string[]> = {
-  [e2eFolders.fixtures]: Object.keys(fixtureModules),
+  [e2eFolders.fixtures]: ['alpha-tone.mp3', 'beta-tone.wav', 'gamma-tone.m4a'],
+  [e2eFolders.long]: ['long-tone.mp3'],
   [e2eFolders.empty]: [],
 };
 
@@ -38,7 +41,7 @@ export const e2eLibrarySource: FolderListingSource = {
   },
 
   async listFolders() {
-    return ok([folderOption(e2eFolders.fixtures), folderOption(e2eFolders.empty)]);
+    return ok(Object.values(e2eFolders).map(folderOption));
   },
 
   async listAudioFiles(directory) {

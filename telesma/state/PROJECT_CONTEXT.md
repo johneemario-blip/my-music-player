@@ -91,7 +91,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 4.1 odtwarzanie w tle (`shouldPlayInBackground: true`, `PlayerAdapter.setNowPlaying` → `setActiveForLockScreen`, `getStatus` + resynchronizacja na `AppState` active, reducer `awaitingNative`)
-- Next task: 4.2 E2E odtwarzania w tle
+- Last completed task: 4.2 E2E grania w tle — fazy 1–4 ukończone, regresja zielona (unit 135, e2e iOS 11 + Android 11), tag `telesma/phase-4`
+- Next task: 5.1 Now Playing + zdalne komendy (sesja włączona już w 4.1; zostaje mapowanie komend, następny/poprzedni)
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
