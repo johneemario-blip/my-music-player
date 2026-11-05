@@ -75,3 +75,9 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Przyczyna: `EXPO_PUBLIC_E2E` jest wkompilowane w paczkę JS, a Gradle nie śledzi tej zmiennej, więc `assembleRelease` użył paczki z buildu e2e (16:26). Naprawa: usunięcie `android/app/build/generated/assets` i `sourcemaps` oraz `createBundleReleaseJsAndAssets --rerun`. Na emulatorze sprawdzone, że „Choose folder” otwiera systemowy wybór folderu. Procedura i ostrzeżenie dopisane do `docs/RUNBOOK.md` oraz do Known problems w PROJECT_CONTEXT. Wcześniej sprawdziłem tylko zawartość pliku APK, a nie zachowanie aplikacji, i to był mój błąd.
 **Impact**: docs/RUNBOOK.md, android/app/build/outputs/apk/release/app-release.apk
 
+## 2026-11-05 22:56 — Czyszczenie projektu do kodu źródłowego
+**Kind**: operations
+**Question/context**: Właściciel poprosił o usunięcie buildów, cache i plików do odtworzenia, tak żeby zostało źródło, z którego da się dalej pracować i budować.
+**Outcome**: Usunięte: `node_modules`, wygenerowane `ios/` i `android/` (z APK i buildami), `.expo`, `.DS_Store`. Projekt zmniejszył się z około 14 GB do 4,6 MB. Zostały ikony aplikacji z `assets/` i pliki testowe audio z `e2e/fixtures` (są potrzebne do budowania i testów), a także `.claude/` i `telesma/`. Odtworzenie środowiska: `npm install`, potem `npm run prebuild` albo `npx expo run:*`. Globalne cache poza projektem (Gradle, Metro, CocoaPods, obrazy emulatorów) nie były ruszane.
+**Impact**: cały katalog projektu
+
