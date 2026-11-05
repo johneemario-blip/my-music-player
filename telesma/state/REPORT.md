@@ -66,7 +66,7 @@ forever and grows in the prompt of every session.
 | 3.3 `PlayerBar` (suwak, czasy, przyciski, wyróżnienie) | ✅ | 128/128 unit (7 nowych), mutacja „nieaktywne bez utworu” → czerwony | 1 | af15e1c | 2026-11-05 |
 | 3.4 E2E odtwarzacza (play, pauza, stop, suwak, następny/poprzedni, auto-następny, koniec listy) | ✅ | e2e iOS 10/10 ×3 przebiegi, Android 10/10 | 3 | 75f43fa | 2026-11-05 |
 | 4.1 Odtwarzanie w tle (tryb audio, sesja Now Playing, synchronizacja zewnętrznej pauzy, AppState) | ✅ | 135/135 unit (7 nowych), mutacje `shouldPlayInBackground` i `awaitingNative` → czerwone | 1 | 435d2ce | 2026-11-05 |
-| 4.2 E2E odtwarzania w tle (3 s na ekranie głównym, pozycja +3 s, „Pause”) | ✅ | e2e iOS 11/11, Android 11/11; mutacja `shouldPlayInBackground` → test tła czerwony (iOS) | 1 | (ten commit) | 2026-11-05 |
+| 4.2 E2E odtwarzania w tle (3 s na ekranie głównym, pozycja +3 s, „Pause”) | ✅ | e2e iOS 11/11, Android 11/11; mutacja `shouldPlayInBackground` → test tła czerwony (iOS) | 1 | ece754e | 2026-11-05 |
 
 ## Change history
 
