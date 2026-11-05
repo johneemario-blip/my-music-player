@@ -6,8 +6,22 @@
 `--device` to pick a cable-connected iPhone). After the first install the app stays on the device
 and is started from its icon.
 
-The APKs left in `android/app/build/outputs/apk/release/` come from e2e builds (`EXPO_PUBLIC_E2E=1`,
-bundled test tones instead of your music) — do not install them for normal use.
+### Installable Android APK
+
+```bash
+cd "/Users/mario/DANE/Praca/AI/TEMP/my-music-player/android"
+find app/build/generated/assets app/build/generated/sourcemaps -delete   # drop a JS bundle left by an e2e build
+./gradlew :app:createBundleReleaseJsAndAssets --rerun :app:assembleRelease
+```
+
+Result: `android/app/build/outputs/apk/release/app-release.apk` (all ABIs, signed with the debug
+key — fine for sideloading, not for Google Play). Install with `adb install -r <apk>` or copy it to
+the phone.
+
+**Pitfall:** `EXPO_PUBLIC_E2E` is baked into the JS bundle, and Gradle does not track it — after an
+e2e build a plain `assembleRelease` reuses the e2e bundle, and **Choose folder** then shows only
+`Fixtures`, `Long`, `Empty`. Always use the commands above, and rebuild after running Android e2e
+(the e2e build overwrites the same APK).
 
 ## Environment
 

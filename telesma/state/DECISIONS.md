@@ -61,3 +61,17 @@ It is a changelog for humans, to remember "what we agreed on and why along the w
 **Outcome**: Uzgodniliśmy zamknięcie 5.3 z adnotacją „iOS sprawdzony tylko na symulatorze (e2e)”; projekt zakończony, powstał `docs/RUNBOOK.md`. Wersja v0.3.0 nie została utworzona, zgodnie z rekomendacją czekania na test na iPhonie. No decision — awaits: czy zacommitować, czy cofnąć zmianę `tsconfig.json`, której Telesma nie zrobiła (zostawiona bez zmian).
 **Impact**: Task 5.3, docs/RUNBOOK.md
 
+## 2026-11-05 22:20 — Commit tsconfig i APK do instalacji
+**Kind**: operations
+**Question/context**: Właściciel kazał zacommitować zmianę `tsconfig.json` i zapytał, czy APK w `release/` nadaje się do zainstalowania.
+**Outcome**: Zmiana `tsconfig.json` zacommitowana (1b5b5b8). Stary APK w `release/` był buildem e2e (dźwięki testowe zamiast biblioteki, tylko arm64), więc nie nadawał się do instalacji. Zbudowany zwykły APK release (`./gradlew :app:assembleRelease` bez `EXPO_PUBLIC_E2E`, wszystkie ABI, podpisany kluczem debug). Ma w sobie 3 krótkie pliki testowe (~110 KB) przez statyczny import `e2eLibrarySource`, ale nie są używane w działaniu aplikacji.
+**Impact**: android/app/build/outputs/apk/release/app-release.apk
+
+## 2026-11-05 22:35 — APK release nadal w trybie e2e
+**Kind**: bug
+**Bug source**: unknown
+**Detected by**: owner
+**Question/context**: Po instalacji APK z poprzedniego wpisu „Choose folder” pokazywał tylko foldery testowe Fixtures/Long/Empty.
+**Outcome**: Przyczyna: `EXPO_PUBLIC_E2E` jest wkompilowane w paczkę JS, a Gradle nie śledzi tej zmiennej, więc `assembleRelease` użył paczki z buildu e2e (16:26). Naprawa: usunięcie `android/app/build/generated/assets` i `sourcemaps` oraz `createBundleReleaseJsAndAssets --rerun`. Na emulatorze sprawdzone, że „Choose folder” otwiera systemowy wybór folderu. Procedura i ostrzeżenie dopisane do `docs/RUNBOOK.md` oraz do Known problems w PROJECT_CONTEXT. Wcześniej sprawdziłem tylko zawartość pliku APK, a nie zachowanie aplikacji, i to był mój błąd.
+**Impact**: docs/RUNBOOK.md, android/app/build/outputs/apk/release/app-release.apk
+
