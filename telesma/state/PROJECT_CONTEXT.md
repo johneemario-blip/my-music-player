@@ -83,7 +83,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 1.2 Model domeny (`src/lib/track.ts`: Track, isSupportedAudioFile, trackNameFromFileName, sortTracks, formatDuration)
-- Next task: 1.3 Pamięć ustawień (settingsStorage)
+- Last completed task: 1.3 settingsStorage (`src/services/storage/settingsStorage.ts`, klucz `settings.selectedDirectory.v1`; mock AsyncStorage w `jest-setup.ts`)
+- Next task: 1.4 Konfiguracja Detox
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)
