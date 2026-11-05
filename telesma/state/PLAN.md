@@ -56,12 +56,12 @@
   - AC: plik MP3 i WAV z katalogu ładuje się i odtwarza przez dekoder systemowy
   - AC: plik, którego nie da się odtworzyć, zgłasza `error` w statusie zamiast wyjątku
 - [x] Test: 3.1 — test kontraktu adaptera z atrapą expo-audio: mapowanie statusów, błąd ładowania, seek
-- [ ] Task 3.2: Kolejka i maszyna stanów odtwarzacza w `src/features/player/` (czysty reducer + hook `usePlayer`): play/pauza, stop, poprzedni/następny, auto-następny, plik nieczytelny → komunikat i przejście dalej; strategia kolejki wymienna pod repeat/shuffle (requires: 3.1, 2.3) (spec: app.md) (tech: typescript)
+- [x] Task 3.2: Kolejka i maszyna stanów odtwarzacza w `src/features/player/` (czysty reducer + hook `usePlayer`): play/pauza, stop, poprzedni/następny, auto-następny, plik nieczytelny → komunikat i przejście dalej; strategia kolejki wymienna pod repeat/shuffle (requires: 3.1, 2.3) (spec: app.md) (tech: typescript)
   - AC: entry — dotknięcie wiersza listy startuje odtwarzanie tego utworu od 0
   - AC: pauza zatrzymuje z zachowaniem pozycji, ponowne play wznawia od tej pozycji
   - AC: stop zatrzymuje i ustawia pozycję na 0; play po stopie startuje od początku
   - AC: po zakończeniu utworu startuje następny z listy, po ostatnim odtwarzacz zatrzymuje się
-- [ ] Test: 3.2 — testy jednostkowe reducera (wszystkie przejścia) i hooka z fałszywym `PlayerAdapter` (auto-następny, koniec listy, plik z błędem)
+- [x] Test: 3.2 — testy jednostkowe reducera (wszystkie przejścia) i hooka z fałszywym `PlayerAdapter` (auto-następny, koniec listy, plik z błędem)
 - [ ] Task 3.3: `PlayerBar` na dole ekranu głównego: tytuł, suwak (`@react-native-community/slider`) z seek, czas bieżący/całkowity `m:ss`, przyciski poprzedni / play-pauza / stop / następny (nieaktywne bez utworu), wyróżnienie granego wiersza (requires: 3.2, 2.4) (spec: app.md) (tech: react-native, typescript, accessibility)
   - AC: suwak pokazuje postęp odtwarzania i przeciągnięcie przewija utwór do wskazanej pozycji
   - AC: przycisk play zmienia się w pauzę podczas odtwarzania i z powrotem po pauzie

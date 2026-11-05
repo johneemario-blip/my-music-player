@@ -88,7 +88,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 3.1 `PlayerAdapter` (`src/services/audio/`: interfejs + `createExpoPlayerAdapter` na jednym `createAudioPlayer`, `configureAudioSession` — silent switch ignorowany, przerwania pauzują)
-- Next task: 3.2 kolejka + reducer + `usePlayer`
+- Last completed task: 3.2 kolejka (`src/features/player/`: `queueStrategy` wymienna, czysty `createPlayerReducer`, `usePlayer` steruje adapterem przez licznik `loadRequest`; „poprzedni” po >3 s restartuje utwór; `app/index.tsx` łączy wiersz z `playTrack`)
+- Next task: 3.3 `PlayerBar`
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

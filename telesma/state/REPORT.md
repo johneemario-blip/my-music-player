@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 3)
-- **Progress**: 10/23 tasks completed (fazy 1–2 ✅, faza 3: 3.1)
+- **Progress**: 11/23 tasks completed (fazy 1–2 ✅, faza 3: 3.1–3.2)
 
 ## Test status
 
@@ -38,11 +38,11 @@ forever and grows in the prompt of every session.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 99 (89 unit + 5 e2e × 2 platformy) |
-| Pass | 99 |
+| Total tests | 131 (121 unit + 5 e2e × 2 platformy) |
+| Pass | 131 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 3.1, `npm test`) |
+| Last run | 2026-11-05 (task 3.2, `npm test`) |
 
 ## Task history
 
@@ -57,7 +57,8 @@ forever and grows in the prompt of every session.
 | 2.3 `useLibrary` + źródło e2e + sonda czasu trwania | ✅ | 67/67 unit (11 nowych), mutacja strażnika generacji → czerwony | 1 | 979f53a | 2026-11-05 |
 | 2.4 `LibraryScreen` (lista, stany, wybór folderu, import) | ✅ | 80/80 unit (13 nowych), mutacja widoczności „Import files” → czerwony | 2 | 8d24740 | 2026-11-05 |
 | 2.5 E2E biblioteki (wybór, pusty folder, restart) | ✅ | e2e iOS 5/5, Android 5/5 | 2 | 14964b2 | 2026-11-05 |
-| 3.1 `PlayerAdapter` + expo-audio | ✅ | 89/89 unit (9 nowych), mutacja „błąd zamiast wyjątku” → czerwony | 1 | (ten commit) | 2026-11-05 |
+| 3.1 `PlayerAdapter` + expo-audio | ✅ | 89/89 unit (9 nowych), mutacja „błąd zamiast wyjątku” → czerwony | 1 | 8810b71 | 2026-11-05 |
+| 3.2 Kolejka, reducer, `usePlayer`, wiersz → odtwarzanie | ✅ | 121/121 unit (32 nowe), mutacja końca kolejki → 4 czerwone, odpięcie wiersza → test wejścia czerwony | 1 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -117,3 +118,4 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 2.3: test „stare czasy trwania” był pierwotnie bezużyteczny (różne id utworów w obu folderach → mutacja strażnika nie czerwieniła) — przepisany na nakładające się foldery (Rock → Rock/Favourites).
 - [2026-11-05] Task 2.4: test wejścia (`app/index.tsx`) wykrył, że `settingsStorage` (1.3) odrzucał pusty `uri`, a od 2.2 `documents` + `''` = cały folder aplikacji iOS — wybór „All music” nie przetrwałby restartu. Walidacja: pusty `uri` dozwolony tylko dla `documents`; przypadek testu „empty uri” zmieniony na „empty SAF uri” (źródło: Key decisions 2026-11-05, ścieżka względna iOS).
 - [2026-11-05] Task 2.5: iOS pokazywał `gamma-tone.m4a` jako 0:02 — AVPlayer podaje AAC odrobinę poniżej 3 s (priming), `formatDuration` obcina w dół. Pliki testowe mp3/m4a wydłużone do 3,5 s; test bez zmian.
+- [2026-11-05] Task 3.2: pauza wywołana z zewnątrz (połączenie, inna aplikacja) zmienia stan natywny, ale reducer nie przełącza się sam z `playing` na `paused` — status zaraz po `load` też ma `isPlaying=false`, więc naiwna synchronizacja przełączałaby przy każdym starcie. Do rozwiązania w 4.1 (resynchronizacja przez AppState) i 5.1 (zdalne komendy).

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { strings } from '@/lib/strings';
 import { testIds } from '@/lib/testIds';
@@ -13,6 +13,19 @@ jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn() }));
 jest.mock('expo-asset', () => ({ Asset: { loadAsync: jest.fn() } }));
 jest.mock('@/services/audio/probeDuration', () => ({
   probeDuration: jest.fn(async () => 125000),
+}));
+
+const mockNativePlayer = {
+  replace: jest.fn(),
+  play: jest.fn(),
+  pause: jest.fn(),
+  seekTo: jest.fn(async () => undefined),
+  remove: jest.fn(),
+  addListener: jest.fn(() => ({ remove: jest.fn() })),
+};
+jest.mock('expo-audio', () => ({
+  createAudioPlayer: jest.fn(() => mockNativePlayer),
+  setAudioModeAsync: jest.fn(async () => undefined),
 }));
 
 describe('HomeScreen (app entry)', () => {
@@ -44,5 +57,22 @@ describe('HomeScreen (app entry)', () => {
 
     expect(await screen.findByRole('button', { name: 'first song, 2:05' })).toBeOnTheScreen();
     expect(screen.getByRole('button', { name: 'second song, 2:05' })).toBeOnTheScreen();
+  });
+
+  it('starts playing a track when its row is tapped', async () => {
+    await AsyncStorage.setItem(
+      selectedDirectoryKey,
+      JSON.stringify({ kind: 'documents', uri: '' }),
+    );
+    await render(<HomeScreen />);
+    const row = await screen.findByRole('button', { name: 'second song, 2:05' });
+
+    await userEvent.setup().press(row);
+
+    expect(mockNativePlayer.replace).toHaveBeenCalledWith({
+      uri: 'file:///app/Documents/Sub/second%20song.wav',
+    });
+    expect(mockNativePlayer.play).toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: 'second song, 2:05' })).toBeSelected();
   });
 });
