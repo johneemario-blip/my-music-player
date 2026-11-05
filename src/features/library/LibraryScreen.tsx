@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 
 import { AppButton } from '@/components/AppButton';
@@ -78,7 +78,7 @@ function StateView({ state, onRetry }: { state: LibraryState; onRetry: () => voi
   }
 }
 
-export function LibraryScreen({ library, source, activeTrackId = null, onTrackPress }: Props) {
+function LibraryScreenComponent({ library, source, activeTrackId = null, onTrackPress }: Props) {
   const theme = useTheme();
   const { state, chooseDirectory, reload, busy } = library;
   const [folders, setFolders] = useState<FolderOption[] | null>(null);
@@ -184,6 +184,9 @@ export function LibraryScreen({ library, source, activeTrackId = null, onTrackPr
     </View>
   );
 }
+
+// Memoized: the player re-renders its parent several times per second while a track plays.
+export const LibraryScreen = memo(LibraryScreenComponent);
 
 const styles = StyleSheet.create({
   container: { flex: 1 },

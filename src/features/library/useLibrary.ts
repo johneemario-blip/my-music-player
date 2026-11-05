@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { Track } from '@/lib/track';
 import type { DurationProbe } from '@/services/audio/probeDuration';
@@ -125,5 +125,8 @@ export function useLibrary({ source, storage, probeDuration }: LibraryDeps): Lib
     if (state.status !== 'idle') await scan(state.directory);
   }, [state, scan]);
 
-  return { state, chooseDirectory, reload, busy };
+  return useMemo(
+    () => ({ state, chooseDirectory, reload, busy }),
+    [state, chooseDirectory, reload, busy],
+  );
 }

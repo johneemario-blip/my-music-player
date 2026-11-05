@@ -77,6 +77,8 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 | R8 w release usuwa klasy ładowane przez APK testowy Detoxa | Build e2e Androida bez minifikacji (`.detoxrc.js`), nie łatać regułami keep → DECISIONS.md 2026-11-05 13:01 |
 | Plik testowy audio na granicy pełnej sekundy daje różne m:ss na iOS i Androidzie (AAC priming, obcinanie w dół) | Fixtures e2e o długości N,5 s (ffmpeg `sine` z `duration=N.5`) → guard: none, bo dotyczy tylko nowych plików testowych |
 | Test ochrony przed nieaktualnymi danymi jest zielony bez ochrony, gdy stary i nowy stan nie mają wspólnych id | Scenariusz z nakładającymi się danymi (te same id), potem mutacja strażnika |
+| Status odtwarzacza (co 250 ms) przerenderowuje wszystko pod `HomeScreen` — `FlatList` ustawia timery 50 ms, Detox na iOS uznaje aplikację za zajętą | Komponenty poza paskiem odtwarzacza w `memo`, hooki zwracają obiekty z `useMemo`; nowy stan odtwarzania trzymać w `PlayerBar`/`usePlayer` → guard: e2e `player.e2e.ts` (test „plays the tapped track” pada, gdy lista znów się przerenderowuje) |
+| Detox Android: `getAttributes().frame` w px, `tap({x,y})` w dp; `adjustSliderToPosition` nie wywołuje slidingStart/Complete | Gesty ze znormalizowanymi współrzędnymi (`swipe(..., normalizedStartingPointX)`) zamiast punktów z `frame` → helper `touchSliderAt` w `e2e/player.e2e.ts` |
 
 ## Component dependencies
 
@@ -88,7 +90,7 @@ Warstwy: UI (komponenty) → hooki stanu (`useLibrary`, `usePlayer`) → serwisy
 
 ## Current state
 
-- Last completed task: 3.3 `PlayerBar` (`src/features/player/PlayerBar.tsx`, ikony `@expo/vector-icons` Ionicons, suwak `@react-native-community/slider` — pozycja przeciągania tylko między slidingStart a slidingComplete)
-- Next task: 3.4 E2E odtwarzacza
+- Last completed task: 3.4 E2E odtwarzacza — fazy 1–3 ukończone, regresja zielona (unit 128, e2e iOS 10 + Android 10), tag `telesma/phase-3`
+- Next task: 4.1 Odtwarzanie w tle
 - Blockers: brak
 - Uwaga: RNTL 14 — `render` jest asynchroniczny (`await render(...)`)

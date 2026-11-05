@@ -67,7 +67,7 @@
   - AC: przycisk play zmienia się w pauzę podczas odtwarzania i z powrotem po pauzie
   - AC: aktualnie grany utwór jest wyróżniony na liście
 - [x] Test: 3.3 — testy RNTL: stany przycisków, wartość suwaka z pozycji, seek wywołuje adapter, wyróżnienie wiersza
-- [ ] Task 3.4: E2E test — dotknięcie utworu → gra; pauza → pozycja zachowana; stop → 0:00; seek suwakiem; następny/poprzedni; auto-następny na krótkich plikach testowych; koniec listy → stop (iOS + Android) (requires: 3.1, 3.2, 3.3) (spec: app.md) (tech: detox, typescript)
+- [x] Task 3.4: E2E test — dotknięcie utworu → gra; pauza → pozycja zachowana; stop → 0:00; seek suwakiem; następny/poprzedni; auto-następny na krótkich plikach testowych; koniec listy → stop (iOS + Android) (requires: 3.1, 3.2, 3.3) (spec: app.md) (tech: detox, typescript)
 
 ### Phase 4: Odtwarzanie w tle
 

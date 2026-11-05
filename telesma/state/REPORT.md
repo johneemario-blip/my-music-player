@@ -15,7 +15,7 @@
 
 - **Start**: 2026-11-05
 - **Status**: In progress (faza 3)
-- **Progress**: 12/23 tasks completed (fazy 1–2 ✅, faza 3: 3.1–3.3)
+- **Progress**: 13/23 tasks completed (fazy 1–3 ✅)
 
 ## Test status
 
@@ -32,17 +32,19 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 3 (2026-11-05) — GREEN:** unit `npm test -- --ci` 128/0 (11 plików), e2e Detox iOS 10/0 (3 kolejne przebiegi) i Android 10/0; `tsc`, ESLint, Prettier czyste. Względem fazy 2: +48 unit, +5 e2e na platformę. Tag `telesma/phase-3`.
+
 **Regression after Phase 2 (2026-11-05) — GREEN:** unit `npm test -- --ci` 80/0 (7 plików), e2e Detox iOS 5/0 i Android 5/0 (smoke + biblioteka); `tsc`, ESLint, Prettier czyste. Względem fazy 1: +43 unit, +4 e2e na platformę. Tag `telesma/phase-2`.
 
 **Regression after Phase 1 (2026-11-05) — GREEN:** unit `npm test -- --ci` 37/0, e2e Detox iOS (`ios.sim.release`) 1/0, Android (`android.emu.release`) 1/0; `tsc`, ESLint, Prettier czyste. Tag `telesma/phase-1`.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 138 (128 unit + 5 e2e × 2 platformy) |
-| Pass | 138 |
+| Total tests | 148 (128 unit + 10 e2e × 2 platformy) |
+| Pass | 148 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | 2026-11-05 (task 3.3, `npm test`) |
+| Last run | 2026-11-05 (regresja po fazie 3) |
 
 ## Task history
 
@@ -59,7 +61,8 @@ forever and grows in the prompt of every session.
 | 2.5 E2E biblioteki (wybór, pusty folder, restart) | ✅ | e2e iOS 5/5, Android 5/5 | 2 | 14964b2 | 2026-11-05 |
 | 3.1 `PlayerAdapter` + expo-audio | ✅ | 89/89 unit (9 nowych), mutacja „błąd zamiast wyjątku” → czerwony | 1 | 8810b71 | 2026-11-05 |
 | 3.2 Kolejka, reducer, `usePlayer`, wiersz → odtwarzanie | ✅ | 121/121 unit (32 nowe), mutacja końca kolejki → 4 czerwone, odpięcie wiersza → test wejścia czerwony | 1 | 5cff361 | 2026-11-05 |
-| 3.3 `PlayerBar` (suwak, czasy, przyciski, wyróżnienie) | ✅ | 128/128 unit (7 nowych), mutacja „nieaktywne bez utworu” → czerwony | 1 | (ten commit) | 2026-11-05 |
+| 3.3 `PlayerBar` (suwak, czasy, przyciski, wyróżnienie) | ✅ | 128/128 unit (7 nowych), mutacja „nieaktywne bez utworu” → czerwony | 1 | af15e1c | 2026-11-05 |
+| 3.4 E2E odtwarzacza (play, pauza, stop, suwak, następny/poprzedni, auto-następny, koniec listy) | ✅ | e2e iOS 10/10 ×3 przebiegi, Android 10/10 | 3 | (ten commit) | 2026-11-05 |
 
 ## Change history
 
@@ -121,3 +124,6 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-11-05] Task 2.5: iOS pokazywał `gamma-tone.m4a` jako 0:02 — AVPlayer podaje AAC odrobinę poniżej 3 s (priming), `formatDuration` obcina w dół. Pliki testowe mp3/m4a wydłużone do 3,5 s; test bez zmian.
 - [2026-11-05] Task 3.2: pauza wywołana z zewnątrz (połączenie, inna aplikacja) zmienia stan natywny, ale reducer nie przełącza się sam z `playing` na `paused` — status zaraz po `load` też ma `isPlaying=false`, więc naiwna synchronizacja przełączałaby przy każdym starcie. Do rozwiązania w 4.1 (resynchronizacja przez AppState) i 5.1 (zdalne komendy).
 - [2026-11-05] Task 3.3: atrapa `expo-asset` jako zwykły obiekt psuła `expo-font` (`instanceof Asset`) po dodaniu ikon — atrapa usunięta; dodana atrapa `react-native-safe-area-context/jest/mock` w `jest-setup.ts`.
+- [2026-11-05] Task 3.4: iOS — lista utworów przerenderowywała się co 250 ms (pozycja odtwarzania w `HomeScreen`, `useLibrary` zwracał nowy obiekt), `FlatList` ustawiał timery 50 ms, Detox czekał na bezczynność, a w tym czasie wszystkie utwory się odgrywały. `useLibrary` zwraca obiekt z `useMemo`, `LibraryScreen` w `memo`.
+- [2026-11-05] Task 3.4: Android — `adjustSliderToPosition` nie wywołuje slidingStart/Complete; dotknięcie z `getAttributes().frame` chybiało (frame w px, tap w dp). Na Androidzie gest `swipe` ze znormalizowanym punktem startu, na iOS `tap` w punktach.
+- [2026-11-05] Task 3.4: jednorazowa porażka „stop po ostatnim utworze” na iOS w pełnym przebiegu (przed poprawką `memo`), nie powtórzyła się w 4 kolejnych przebiegach — obserwować.
